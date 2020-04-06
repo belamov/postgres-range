@@ -15,20 +15,20 @@ class RangesSerializationTest extends TestCase
     /** @test */
     public function timestamp_range_serializes_correctly(): void
     {
-        $range = new TimestampRange('2010-01-01 14:30', '2010-01-01 15:30', '[', ']');
-        $this->assertEquals('[2010-01-01 14:30:00,2010-01-01 15:30:00]', (string)$range);
+        $range = new TimestampRange('2010-01-01 14:30:30', '2010-01-01 15:30:30', '[', ']');
+        $this->assertEquals('[2010-01-01 14:30:30,2010-01-01 15:30:30]', (string)$range);
 
-        $range = new TimestampRange('2010-01-01 14:30', '2010-01-01 15:30', '(', ']');
-        $this->assertEquals('(2010-01-01 14:30:00,2010-01-01 15:30:00]', (string)$range);
+        $range = new TimestampRange('2010-01-01 14:30:30', '2010-01-01 15:30:30', '(', ']');
+        $this->assertEquals('(2010-01-01 14:30:30,2010-01-01 15:30:30]', (string)$range);
 
-        $range = new TimestampRange('2010-01-01 14:30', '2010-01-01 15:30', '(', ')');
-        $this->assertEquals('(2010-01-01 14:30:00,2010-01-01 15:30:00)', (string)$range);
+        $range = new TimestampRange('2010-01-01 14:30:30', '2010-01-01 15:30:30', '(', ')');
+        $this->assertEquals('(2010-01-01 14:30:30,2010-01-01 15:30:30)', (string)$range);
 
-        $range = new TimestampRange(null, '2010-01-01 15:30', '[', ']');
-        $this->assertEquals('[,2010-01-01 15:30:00]', (string)$range);
+        $range = new TimestampRange(null, '2010-01-01 15:30:30', '[', ']');
+        $this->assertEquals('[,2010-01-01 15:30:30]', (string)$range);
 
-        $range = new TimestampRange('2010-01-01 14:30', null, '[', ']');
-        $this->assertEquals('[2010-01-01 14:30:00,]', (string)$range);
+        $range = new TimestampRange('2010-01-01 14:30:30', null, '[', ']');
+        $this->assertEquals('[2010-01-01 14:30:30,]', (string)$range);
 
         $range = new TimestampRange(null, null, '[', ']');
         $this->assertEquals('[,]', (string)$range);

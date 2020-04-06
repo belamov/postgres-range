@@ -10,125 +10,137 @@ use Belamov\PostrgesRange\Ranges\TimeRange;
 use Belamov\PostrgesRange\Ranges\TimestampRange;
 use Belamov\PostrgesRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
-use Illuminate\Database\Eloquent\Model;
 
 class RangesCastingTest extends TestCase
 {
-
     /** @test */
-    public function it_casts_timestamp_range_column()
+    public function it_casts_timestamp_range_column(): void
     {
         $from = '2010-01-01 14:30:30';
         $to = '2010-01-01 15:30:30';
         $timestampRange = new TimestampRange($from, $to, '[', ']');
-        $model = Range::create([
-            'timestamp_range' => $timestampRange
-        ]);
+        $model = $this->createModel(
+            [
+                'timestamp_range' => $timestampRange
+            ]
+        );
 
         $model = $model->fresh();
 
         $this->assertDatabaseHas('ranges', ['id' => $model->id]);
         $this->assertInstanceOf(TimestampRange::class, $model->timestamp_range);
-        $this->assertEquals($timestampRange, $model->timestamp_range);
         $this->assertEquals($from, $model->timestamp_range->from()->toDateTimeString());
         $this->assertEquals($to, $model->timestamp_range->to()->toDateTimeString());
     }
 
+    /**
+     * @param  array  $attributes
+     * @return Range
+     */
+    private function createModel(array $attributes = []): Range
+    {
+        return Range::create($attributes);
+    }
+
     /** @test */
-    public function it_casts_time_range_column()
+    public function it_casts_time_range_column(): void
     {
         $from = '14:30:30';
         $to = '15:30:30';
         $timeRange = new TimeRange($from, $to, '[', ']');
-        $model = Range::create([
-            'time_range' => $timeRange
-        ]);
+        $model = $this->createModel(
+            [
+                'time_range' => $timeRange
+            ]
+        );
 
         $model = $model->fresh();
 
         $this->assertDatabaseHas('ranges', ['id' => $model->id]);
         $this->assertInstanceOf(TimeRange::class, $model->time_range);
-        $this->assertEquals($timeRange, $model->time_range);
         $this->assertEquals($from, $model->time_range->from());
         $this->assertEquals($to, $model->time_range->to());
     }
 
     /** @test */
-    public function it_casts_date_range_column()
+    public function it_casts_date_range_column(): void
     {
         $from = CarbonImmutable::parse('2010-01-10');
         $to = CarbonImmutable::parse('2010-01-15');
         $dateRange = new DateRange($from->toDateString(), $to->toDateString(), '[', ')');
-        $model = Range::create([
-            'date_range' => $dateRange
-        ]);
+        $model = $this->createModel(
+            [
+                'date_range' => $dateRange
+            ]
+        );
 
         $model = $model->fresh();
 
         $this->assertDatabaseHas('ranges', ['id' => $model->id]);
         $this->assertInstanceOf(DateRange::class, $model->date_range);
-        $this->assertEquals($dateRange, $model->date_range);
         $this->assertEquals($from, $model->date_range->from());
         $this->assertEquals($to, $model->date_range->to());
     }
 
     /** @test */
-    public function it_casts_float_range_column()
+    public function it_casts_float_range_column(): void
     {
         $from = 1.5;
         $to = 2.5;
         $floatRange = new FloatRange($from, $to, '[', ']');
-        $model = Range::create([
-            'float_range' => $floatRange
-        ]);
+        $model = $this->createModel(
+            [
+                'float_range' => $floatRange
+            ]
+        );
 
         $model = $model->fresh();
 
         $this->assertDatabaseHas('ranges', ['id' => $model->id]);
         $this->assertInstanceOf(FloatRange::class, $model->float_range);
-        $this->assertEquals($floatRange, $model->float_range);
         $this->assertEquals($from, $model->float_range->from());
         $this->assertEquals($to, $model->float_range->to());
     }
 
     /** @test */
-    public function it_casts_integer_and_bigint_range_column()
+    public function it_casts_integer_and_bigint_range_column(): void
     {
         $from = 10;
         $to = 20;
         $integerRange = new IntegerRange($from, $to, '[', ')');
-        $model = Range::create([
-            'integer_range' => $integerRange,
-            'bigint_range' => $integerRange
-        ]);
+        $model = $this->createModel(
+            [
+                'integer_range' => $integerRange,
+                'bigint_range' => $integerRange
+            ]
+        );
 
         $model = $model->fresh();
 
         $this->assertDatabaseHas('ranges', ['id' => $model->id]);
 
         $this->assertInstanceOf(IntegerRange::class, $model->integer_range);
-        $this->assertEquals($integerRange, $model->integer_range);
         $this->assertEquals($from, $model->integer_range->from());
         $this->assertEquals($to, $model->integer_range->to());
 
         $this->assertInstanceOf(IntegerRange::class, $model->bigint_range);
-        $this->assertEquals($integerRange, $model->bigint_range);
         $this->assertEquals($from, $model->bigint_range->from());
         $this->assertEquals($to, $model->bigint_range->to());
     }
 
     /** @test */
-    public function it_casts_empty_values_to_null()
+    public function it_casts_empty_values_to_null(): void
     {
-//        $model = Range::create([
-//            'integer_range' => null,
-//            'bigint_range' => null,
-//            'float_range' => null,
-//            'date_range' => null,
-//            'timestamp_range'=>null,
-//            'time_range'=>null,
-//        ]);
-        $model = Range::create();
+        $model = $this->createModel(
+            [
+                'timestamp_range' => null,
+                'time_range' => null,
+                'float_range' => null,
+                'integer_range' => null,
+                'bigint_range' => null,
+                'date_range' => null
+            ]
+        );
 
         $model = $model->fresh();
 
@@ -140,6 +152,46 @@ class RangesCastingTest extends TestCase
         $this->assertNull($model->date_range);
     }
 
+    /** @test */
+    public function it_casts_empty_boundaries_to_null(): void
+    {
+        $modelWithMissingLowerBoundary = $this->createModel(
+            [
+                'timestamp_range' => new TimestampRange(null, '2010-01-01 14:30:30'),
+                'time_range' => new TimeRange(null, '10:30'),
+                'float_range' => new FloatRange(null, 2.5),
+                'integer_range' => new IntegerRange(null, 10),
+                'bigint_range' => new IntegerRange(null, 10),
+                'date_range' => new DateRange(null, '2010-01-01')
+            ]
+        );
+
+        $this->assertNull($modelWithMissingLowerBoundary->timestamp_range->from());
+        $this->assertNull($modelWithMissingLowerBoundary->time_range->from());
+        $this->assertNull($modelWithMissingLowerBoundary->float_range->from());
+        $this->assertNull($modelWithMissingLowerBoundary->integer_range->from());
+        $this->assertNull($modelWithMissingLowerBoundary->bigint_range->from());
+        $this->assertNull($modelWithMissingLowerBoundary->date_range->from());
+
+        $modelWithMissingUpperBoundary = $this->createModel(
+            [
+                'timestamp_range' => new TimestampRange('2010-01-01 14:30:30', null),
+                'time_range' => new TimeRange('10:30', null),
+                'float_range' => new FloatRange(2.5, null),
+                'integer_range' => new IntegerRange(10, null),
+                'bigint_range' => new IntegerRange(10, null),
+                'date_range' => new DateRange('2010-01-01', null)
+            ]
+        );
+
+        $this->assertNull($modelWithMissingUpperBoundary->timestamp_range->to());
+        $this->assertNull($modelWithMissingUpperBoundary->time_range->to());
+        $this->assertNull($modelWithMissingUpperBoundary->float_range->to());
+        $this->assertNull($modelWithMissingUpperBoundary->integer_range->to());
+        $this->assertNull($modelWithMissingUpperBoundary->bigint_range->to());
+        $this->assertNull($modelWithMissingUpperBoundary->date_range->to());
+    }
+
     /**
      * Setup the test environment.
      */
@@ -148,6 +200,6 @@ class RangesCastingTest extends TestCase
         parent::setUp();
         $this->withoutMockingConsoleOutput();
 
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations/');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/');
     }
 }

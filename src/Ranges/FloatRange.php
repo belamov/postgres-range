@@ -2,49 +2,22 @@
 
 namespace Belamov\PostrgesRange\Ranges;
 
+/**
+ * Class FloatRange
+ *
+ * @method float|null from()
+ * @method float|null to()
+ *
+ * @package Belamov\PostrgesRange\Ranges
+ */
 class FloatRange extends Range
 {
-    private ?float $from;
-    private ?float $to;
-
     /**
-     * @param float|null $from
-     * @param float|null $to
-     * @param string $fromBound
-     * @param string $toBound
+     * @param  string  $boundary
+     * @return float
      */
-    public function __construct(float $from = null, float $to = null, $fromBound = '[', $toBound = ')')
+    protected function transformBoundary(string $boundary): float
     {
-        $this->from = $from;
-        $this->to = $to;
-        $this->fromBound = $fromBound;
-        $this->toBound = $toBound;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        $to = $this->to() ?? '';
-        $from = $this->from() ?? '';
-
-        return "{$this->fromBound}{$from},{$to}{$this->toBound}";
-    }
-
-    /**
-     * @return float|null
-     */
-    public function to(): ?float
-    {
-        return $this->to;
-    }
-
-    /**
-     * @return float|null
-     */
-    public function from(): ?float
-    {
-        return $this->from;
+        return (float)$boundary;
     }
 }
