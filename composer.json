@@ -1,13 +1,13 @@
 {
-    "name": "belamov/postrges-range",
+    "name": "belamov/postgres-range",
     "description": "Postgres range types support for laravel",
     "keywords": [
         "belamov",
-        "postrges-range",
+        "postgres-range",
         "laravel",
         "postgres"
     ],
-    "homepage": "https://github.com/belamov/postrges-range",
+    "homepage": "https://github.com/belamov/postgres-range",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Belamov\\PostrgesRange\\": "src"
+            "Belamov\\PostgresRange\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Belamov\\PostrgesRange\\Tests\\": "tests"
+            "Belamov\\PostgresRange\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,7 +47,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Belamov\\PostrgesRange\\PostrgesRangeServiceProvider"
+                "Belamov\\PostgresRange\\PostgresRangeServiceProvider"
             ]
         }
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Belamov\PostrgesRange\Casts;
+namespace Belamov\PostgresRange\Casts;
 
-use Belamov\PostrgesRange\Ranges\FloatRange;
+use Belamov\PostgresRange\Ranges\FloatRange;
 
 class FloatRangeCast extends RangeCast
 {

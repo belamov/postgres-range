@@ -1,6 +1,6 @@
 <?php
 
-namespace Belamov\PostrgesRange\Ranges;
+namespace Belamov\PostgresRange\Ranges;
 
 use Carbon\CarbonImmutable;
 
@@ -10,7 +10,7 @@ use Carbon\CarbonImmutable;
  * @method string|null from()
  * @method string|null to()
  *
- * @package Belamov\PostrgesRange\Ranges
+ * @package Belamov\PostgresRange\Ranges
  */
 class TimeRange extends Range
 {

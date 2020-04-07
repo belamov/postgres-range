@@ -1,8 +1,8 @@
 <?php
 
-namespace Belamov\PostrgesRange\Casts;
+namespace Belamov\PostgresRange\Casts;
 
-use Belamov\PostrgesRange\Ranges\TimestampRange;
+use Belamov\PostgresRange\Ranges\TimestampRange;
 
 class TimestampRangeCast extends RangeCast
 {

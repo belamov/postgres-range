@@ -1,10 +1,10 @@
 <?php
 
-namespace Belamov\PostrgesRange\Tests\Unit;
+namespace Belamov\PostgresRange\Tests\Unit;
 
-use Belamov\PostrgesRange\Ranges\FloatRange;
-use Belamov\PostrgesRange\Ranges\IntegerRange;
-use Belamov\PostrgesRange\Tests\TestCase;
+use Belamov\PostgresRange\Ranges\FloatRange;
+use Belamov\PostgresRange\Ranges\IntegerRange;
+use Belamov\PostgresRange\Tests\TestCase;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;

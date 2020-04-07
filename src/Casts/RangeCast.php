@@ -1,8 +1,8 @@
 <?php
 
-namespace Belamov\PostrgesRange\Casts;
+namespace Belamov\PostgresRange\Casts;
 
-use Belamov\PostrgesRange\Ranges\Range;
+use Belamov\PostgresRange\Ranges\Range;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
 

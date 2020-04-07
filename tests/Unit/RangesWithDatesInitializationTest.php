@@ -1,11 +1,11 @@
 <?php
 
-namespace Belamov\PostrgesRange\Tests\Unit;
+namespace Belamov\PostgresRange\Tests\Unit;
 
-use Belamov\PostrgesRange\Ranges\DateRange;
-use Belamov\PostrgesRange\Ranges\TimeRange;
-use Belamov\PostrgesRange\Ranges\TimestampRange;
-use Belamov\PostrgesRange\Tests\TestCase;
+use Belamov\PostgresRange\Ranges\DateRange;
+use Belamov\PostgresRange\Ranges\TimeRange;
+use Belamov\PostgresRange\Ranges\TimestampRange;
+use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
 use DateTime;
 use Exception;

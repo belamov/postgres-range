@@ -1,8 +1,8 @@
 <?php
 
-namespace Belamov\PostrgesRange\Casts;
+namespace Belamov\PostgresRange\Casts;
 
-use Belamov\PostrgesRange\Ranges\IntegerRange;
+use Belamov\PostgresRange\Ranges\IntegerRange;
 
 class IntegerRangeCast extends RangeCast
 {

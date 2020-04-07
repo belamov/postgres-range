@@ -1,6 +1,6 @@
 <?php
 
-namespace Belamov\PostrgesRange;
+namespace Belamov\PostgresRange;
 
 use Illuminate\Support\Facades\DB;
 

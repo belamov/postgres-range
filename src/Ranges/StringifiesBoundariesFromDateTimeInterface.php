@@ -1,6 +1,6 @@
 <?php
 
-namespace Belamov\PostrgesRange\Ranges;
+namespace Belamov\PostgresRange\Ranges;
 
 use DateTimeInterface;
 

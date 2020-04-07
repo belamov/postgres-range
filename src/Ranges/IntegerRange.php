@@ -1,6 +1,6 @@
 <?php
 
-namespace Belamov\PostrgesRange\Ranges;
+namespace Belamov\PostgresRange\Ranges;
 
 /**
  * Class IntegerRange
@@ -8,7 +8,7 @@ namespace Belamov\PostrgesRange\Ranges;
  * @method int|null from()
  * @method int|null to()
  *
- * @package Belamov\PostrgesRange\Ranges
+ * @package Belamov\PostgresRange\Ranges
  */
 class IntegerRange extends CanonicalRange
 {

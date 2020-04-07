@@ -1,6 +1,6 @@
 <?php
 
-namespace Belamov\PostrgesRange\Ranges;
+namespace Belamov\PostgresRange\Ranges;
 
 /**
  * Class Range
@@ -8,7 +8,7 @@ namespace Belamov\PostrgesRange\Ranges;
  * @property string $fromBound
  * @property string $toBound
  *
- * @package Belamov\PostrgesRange\Ranges
+ * @package Belamov\PostgresRange\Ranges
  */
 abstract class Range
 {

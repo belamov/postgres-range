@@ -1,10 +1,10 @@
 <?php
 
-namespace Belamov\PostrgesRange\Tests\Unit;
+namespace Belamov\PostgresRange\Tests\Unit;
 
-use Belamov\PostrgesRange\Models\Range;
-use Belamov\PostrgesRange\Ranges\IntegerRange;
-use Belamov\PostrgesRange\Tests\TestCase;
+use Belamov\PostgresRange\Models\Range;
+use Belamov\PostgresRange\Ranges\IntegerRange;
+use Belamov\PostgresRange\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class MacrosTest extends TestCase

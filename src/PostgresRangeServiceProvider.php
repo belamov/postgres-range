@@ -1,11 +1,11 @@
 <?php
 
-namespace Belamov\PostrgesRange;
+namespace Belamov\PostgresRange;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
-class PostrgesRangeServiceProvider extends ServiceProvider
+class PostgresRangeServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.

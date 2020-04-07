@@ -1,6 +1,6 @@
 <?php
 
-namespace Belamov\PostrgesRange\Ranges;
+namespace Belamov\PostgresRange\Ranges;
 
 /**
  * Class FloatRange
@@ -8,7 +8,7 @@ namespace Belamov\PostrgesRange\Ranges;
  * @method float|null from()
  * @method float|null to()
  *
- * @package Belamov\PostrgesRange\Ranges
+ * @package Belamov\PostgresRange\Ranges
  */
 class FloatRange extends Range
 {

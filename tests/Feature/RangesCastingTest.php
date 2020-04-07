@@ -1,13 +1,13 @@
 <?php
 
-namespace Belamov\PostrgesRange\Tests\Unit;
+namespace Belamov\PostgresRange\Tests\Unit;
 
-use Belamov\PostrgesRange\Ranges\DateRange;
-use Belamov\PostrgesRange\Ranges\FloatRange;
-use Belamov\PostrgesRange\Ranges\IntegerRange;
-use Belamov\PostrgesRange\Ranges\TimeRange;
-use Belamov\PostrgesRange\Ranges\TimestampRange;
-use Belamov\PostrgesRange\Tests\TestCase;
+use Belamov\PostgresRange\Ranges\DateRange;
+use Belamov\PostgresRange\Ranges\FloatRange;
+use Belamov\PostgresRange\Ranges\IntegerRange;
+use Belamov\PostgresRange\Ranges\TimeRange;
+use Belamov\PostgresRange\Ranges\TimestampRange;
+use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Belamov\PostrgesRange\Ranges;
+namespace Belamov\PostgresRange\Ranges;
 
 /**
  * Class CanonicalRange
  *
  * Range that automatically canonicalizes its boundary to [)
  *
- * @package Belamov\PostrgesRange\Ranges
+ * @package Belamov\PostgresRange\Ranges
  */
 abstract class CanonicalRange extends Range
 {

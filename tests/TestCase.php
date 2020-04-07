@@ -1,9 +1,9 @@
 <?php
 
-namespace Belamov\PostrgesRange\Tests;
+namespace Belamov\PostgresRange\Tests;
 
-use Belamov\PostrgesRange\Models\Range;
-use Belamov\PostrgesRange\PostrgesRangeServiceProvider;
+use Belamov\PostgresRange\Models\Range;
+use Belamov\PostgresRange\PostgresRangeServiceProvider;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -27,7 +27,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function getPackageProviders($app)
     {
-        return [PostrgesRangeServiceProvider::class];
+        return [PostgresRangeServiceProvider::class];
     }
 
     /**

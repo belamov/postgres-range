@@ -1,17 +1,17 @@
 <?php
 
-namespace Belamov\PostrgesRange\Models;
+namespace Belamov\PostgresRange\Models;
 
-use Belamov\PostrgesRange\Casts\DateRangeCast;
-use Belamov\PostrgesRange\Casts\FloatRangeCast;
-use Belamov\PostrgesRange\Casts\IntegerRangeCast;
-use Belamov\PostrgesRange\Casts\TimeRangeCast;
-use Belamov\PostrgesRange\Casts\TimestampRangeCast;
-use Belamov\PostrgesRange\Ranges\DateRange;
-use Belamov\PostrgesRange\Ranges\FloatRange;
-use Belamov\PostrgesRange\Ranges\IntegerRange;
-use Belamov\PostrgesRange\Ranges\TimeRange;
-use Belamov\PostrgesRange\Ranges\TimestampRange;
+use Belamov\PostgresRange\Casts\DateRangeCast;
+use Belamov\PostgresRange\Casts\FloatRangeCast;
+use Belamov\PostgresRange\Casts\IntegerRangeCast;
+use Belamov\PostgresRange\Casts\TimeRangeCast;
+use Belamov\PostgresRange\Casts\TimestampRangeCast;
+use Belamov\PostgresRange\Ranges\DateRange;
+use Belamov\PostgresRange\Ranges\FloatRange;
+use Belamov\PostgresRange\Ranges\IntegerRange;
+use Belamov\PostgresRange\Ranges\TimeRange;
+use Belamov\PostgresRange\Ranges\TimestampRange;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property IntegerRange $bigint_range
  * @property DateRange $date_range
  *
- * @package Belamov\PostrgesRange\Models
+ * @package Belamov\PostgresRange\Models
  */
 class Range extends Model
 {
