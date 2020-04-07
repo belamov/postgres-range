@@ -2,6 +2,7 @@
 
 namespace Belamov\PostrgesRange\Tests;
 
+use Belamov\PostrgesRange\Models\Range;
 use Belamov\PostrgesRange\PostrgesRangeServiceProvider;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
@@ -27,5 +28,14 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     protected function getPackageProviders($app)
     {
         return [PostrgesRangeServiceProvider::class];
+    }
+
+    /**
+     * @param  array  $attributes
+     * @return Range
+     */
+    protected function createModel(array $attributes = []): Range
+    {
+        return Range::create($attributes);
     }
 }

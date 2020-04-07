@@ -1,11 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use Belamov\PostrgesRange\SqlGenerator;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Schema;
 
 class CreateRangesTestTable extends Migration
 {
+    use RefreshDatabase;
+
     /**
      * Run the migrations.
      *
@@ -13,18 +17,21 @@ class CreateRangesTestTable extends Migration
      */
     public function up(): void
     {
-        Schema::create('ranges', static function (Blueprint $table) {
-            $table->id();
-        });
+        Schema::create(
+            'ranges',
+            static function (Blueprint $table) {
+                $table->id();
+            }
+        );
 
-        Belamov\PostrgesRange\PostrgesRangeFacade::timestampRange('ranges', 'timestamp_range', true);
-        Belamov\PostrgesRange\PostrgesRangeFacade::timeRange('ranges', 'time_range', true);
-        Belamov\PostrgesRange\PostrgesRangeFacade::numberRange('ranges', 'float_range', true);
-        Belamov\PostrgesRange\PostrgesRangeFacade::integerRange('ranges', 'integer_range', true);
-        Belamov\PostrgesRange\PostrgesRangeFacade::bigintRange('ranges', 'bigint_range', true);
-        Belamov\PostrgesRange\PostrgesRangeFacade::dateRange('ranges', 'date_range', true);
+        $sqlGenerator = new SqlGenerator('ranges');
 
-
+        $sqlGenerator->timestampRange('timestamp_range', true);
+        $sqlGenerator->timeRange('time_range', true);
+        $sqlGenerator->numberRange('float_range', true);
+        $sqlGenerator->integerRange('integer_range', true);
+        $sqlGenerator->bigintRange('bigint_range', true);
+        $sqlGenerator->dateRange('date_range', true);
     }
 
     /**
@@ -34,6 +41,5 @@ class CreateRangesTestTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ranges');
     }
 }
