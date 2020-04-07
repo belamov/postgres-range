@@ -30,7 +30,7 @@ class SqlGenerator
      * @param  bool  $nullable
      * @param  null  $default
      */
-    public function timestampRange(string $columnName, bool $nullable = false, $default = null): void
+    public function timestampRange(string $columnName, bool $nullable = false, ?string $default = null): void
     {
         $this->addColumn($columnName, 'tsrange', $nullable, $default);
     }
