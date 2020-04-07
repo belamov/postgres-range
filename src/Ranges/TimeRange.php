@@ -2,6 +2,8 @@
 
 namespace Belamov\PostrgesRange\Ranges;
 
+use Carbon\CarbonImmutable;
+
 /**
  * Class TimeRange
  *
@@ -12,12 +14,22 @@ namespace Belamov\PostrgesRange\Ranges;
  */
 class TimeRange extends Range
 {
+    use StringifiesBoundariesFromDateTimeInterface;
+
     /**
      * @param  string  $boundary
      * @return string
      */
     protected function transformBoundary(string $boundary): string
     {
-        return $boundary;
+        return CarbonImmutable::parse($boundary)->toTimeString();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getBoundaryFormat(): string
+    {
+        return 'H:i:s';
     }
 }
