@@ -14,6 +14,8 @@ use Carbon\CarbonImmutable;
  */
 class DateRange extends CanonicalRange
 {
+    use StringifiesBoundariesFromDateTimeInterface;
+
     /**
      * @param $boundary
      * @return string
@@ -30,5 +32,13 @@ class DateRange extends CanonicalRange
     protected function transformBoundary(string $boundary): CarbonImmutable
     {
         return CarbonImmutable::parse($boundary);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function getBoundaryFormat(): string
+    {
+        return 'Y-m-d';
     }
 }
