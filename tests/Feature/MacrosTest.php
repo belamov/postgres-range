@@ -234,5 +234,4 @@ class MacrosTest extends TestCase
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
     }
-
 }

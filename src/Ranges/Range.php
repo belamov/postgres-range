@@ -3,12 +3,10 @@
 namespace Belamov\PostgresRange\Ranges;
 
 /**
- * Class Range
+ * Class Range.
  *
  * @property string $fromBound
  * @property string $toBound
- *
- * @package Belamov\PostgresRange\Ranges
  */
 abstract class Range
 {
@@ -31,7 +29,7 @@ abstract class Range
     public function from()
     {
         if ($this->from === null) {
-            return null;
+            return;
         }
 
         return $this->transformBoundary($this->from);
@@ -49,7 +47,7 @@ abstract class Range
     public function to()
     {
         if ($this->to === null) {
-            return null;
+            return;
         }
 
         return $this->transformBoundary($this->to);

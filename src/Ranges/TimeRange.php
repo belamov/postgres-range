@@ -5,12 +5,10 @@ namespace Belamov\PostgresRange\Ranges;
 use Carbon\CarbonImmutable;
 
 /**
- * Class TimeRange
+ * Class TimeRange.
  *
  * @method string|null from()
  * @method string|null to()
- *
- * @package Belamov\PostgresRange\Ranges
  */
 class TimeRange extends Range
 {
@@ -26,7 +24,7 @@ class TimeRange extends Range
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function getBoundaryFormat(): string
     {

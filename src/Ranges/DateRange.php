@@ -5,12 +5,10 @@ namespace Belamov\PostgresRange\Ranges;
 use Carbon\CarbonImmutable;
 
 /**
- * Class DateRange
+ * Class DateRange.
  *
  * @method CarbonImmutable|null from()
  * @method CarbonImmutable|null to()
- *
- * @package Belamov\PostgresRange\Ranges
  */
 class DateRange extends CanonicalRange
 {
@@ -35,7 +33,7 @@ class DateRange extends CanonicalRange
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     protected function getBoundaryFormat(): string
     {

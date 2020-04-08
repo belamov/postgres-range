@@ -3,11 +3,9 @@
 namespace Belamov\PostgresRange\Ranges;
 
 /**
- * Class CanonicalRange
+ * Class CanonicalRange.
  *
  * Range that automatically canonicalizes its boundary to [)
- *
- * @package Belamov\PostgresRange\Ranges
  */
 abstract class CanonicalRange extends Range
 {
@@ -19,7 +17,7 @@ abstract class CanonicalRange extends Range
 
     /**
      * The built-in range types int4range, int8range, and daterange all use a canonical form
-     * that includes the lower bound and excludes the upper bound; that is, [)
+     * that includes the lower bound and excludes the upper bound; that is, [).
      */
     private function canonicalizeBoundaries(): void
     {

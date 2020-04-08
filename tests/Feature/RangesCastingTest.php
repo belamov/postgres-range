@@ -23,7 +23,7 @@ class RangesCastingTest extends TestCase
         $timestampRange = new TimestampRange($from, $to, '[', ']');
         $model = $this->createModel(
             [
-                'timestamp_range' => $timestampRange
+                'timestamp_range' => $timestampRange,
             ]
         );
 
@@ -43,7 +43,7 @@ class RangesCastingTest extends TestCase
         $timeRange = new TimeRange($from, $to, '[', ']');
         $model = $this->createModel(
             [
-                'time_range' => $timeRange
+                'time_range' => $timeRange,
             ]
         );
 
@@ -63,7 +63,7 @@ class RangesCastingTest extends TestCase
         $dateRange = new DateRange($from->toDateString(), $to->toDateString(), '[', ')');
         $model = $this->createModel(
             [
-                'date_range' => $dateRange
+                'date_range' => $dateRange,
             ]
         );
 
@@ -83,7 +83,7 @@ class RangesCastingTest extends TestCase
         $floatRange = new FloatRange($from, $to, '[', ']');
         $model = $this->createModel(
             [
-                'float_range' => $floatRange
+                'float_range' => $floatRange,
             ]
         );
 
@@ -104,7 +104,7 @@ class RangesCastingTest extends TestCase
         $model = $this->createModel(
             [
                 'integer_range' => $integerRange,
-                'bigint_range' => $integerRange
+                'bigint_range' => $integerRange,
             ]
         );
 
@@ -131,7 +131,7 @@ class RangesCastingTest extends TestCase
                 'float_range' => null,
                 'integer_range' => null,
                 'bigint_range' => null,
-                'date_range' => null
+                'date_range' => null,
             ]
         );
 
@@ -155,7 +155,7 @@ class RangesCastingTest extends TestCase
                 'float_range' => new FloatRange(null, 2.5),
                 'integer_range' => new IntegerRange(null, 10),
                 'bigint_range' => new IntegerRange(null, 10),
-                'date_range' => new DateRange(null, '2010-01-01')
+                'date_range' => new DateRange(null, '2010-01-01'),
             ]
         );
 
@@ -173,7 +173,7 @@ class RangesCastingTest extends TestCase
                 'float_range' => new FloatRange(2.5, null),
                 'integer_range' => new IntegerRange(10, null),
                 'bigint_range' => new IntegerRange(10, null),
-                'date_range' => new DateRange('2010-01-01', null)
+                'date_range' => new DateRange('2010-01-01', null),
             ]
         );
 

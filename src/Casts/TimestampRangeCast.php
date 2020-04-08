@@ -14,5 +14,4 @@ class TimestampRangeCast extends RangeCast
     {
         return new TimestampRange($matches[2], $matches[3], $matches[1], $matches[4]);
     }
-
 }

@@ -3,12 +3,10 @@
 namespace Belamov\PostgresRange\Ranges;
 
 /**
- * Class IntegerRange
+ * Class IntegerRange.
  *
  * @method int|null from()
  * @method int|null to()
- *
- * @package Belamov\PostgresRange\Ranges
  */
 class IntegerRange extends CanonicalRange
 {
@@ -18,7 +16,7 @@ class IntegerRange extends CanonicalRange
      */
     protected function addToDiscreteBoundary($boundary): string
     {
-        return (string)($this->transformBoundary($boundary) + 1);
+        return (string) ($this->transformBoundary($boundary) + 1);
     }
 
     /**
@@ -27,6 +25,6 @@ class IntegerRange extends CanonicalRange
      */
     protected function transformBoundary(string $boundary): int
     {
-        return (int)$boundary;
+        return (int) $boundary;
     }
 }

@@ -127,6 +127,7 @@ class SqlGenerator
     {
         if (empty($additionalColumns)) {
             $this->addGistUnique($columnName);
+
             return;
         }
 
@@ -183,6 +184,7 @@ class SqlGenerator
         foreach ($additionalColumns as $additionalColumn) {
             $columns .= "{$additionalColumn} WITH =,";
         }
+
         return $columns;
     }
 
@@ -225,6 +227,4 @@ class SqlGenerator
     {
         $this->addColumn($columnName, 'daterange', $nullable, $default);
     }
-
-
 }
