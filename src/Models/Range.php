@@ -15,7 +15,7 @@ use Belamov\PostgresRange\Ranges\TimestampRange;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Range
+ * Class Range.
  *
  * @property TimestampRange $timestamp_range
  * @property TimeRange $time_range
@@ -23,8 +23,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property IntegerRange $integer_range
  * @property IntegerRange $bigint_range
  * @property DateRange $date_range
- *
- * @package Belamov\PostgresRange\Models
  */
 class Range extends Model
 {
@@ -36,6 +34,6 @@ class Range extends Model
         'float_range' => FloatRangeCast::class,
         'integer_range' => IntegerRangeCast::class,
         'bigint_range' => IntegerRangeCast::class,
-        'date_range' => DateRangeCast::class
+        'date_range' => DateRangeCast::class,
     ];
 }

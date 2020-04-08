@@ -14,5 +14,4 @@ class IntegerRangeCast extends RangeCast
     {
         return new IntegerRange($matches[2], $matches[3], $matches[1], $matches[4]);
     }
-
 }

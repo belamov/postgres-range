@@ -103,7 +103,6 @@ class SqlGenerationTest extends TestCase
         $this->expectExceptionMessageMatches('/conflicting key value violates exclusion constraint/');
         $this->expectExceptionMessageMatches('/(column1, column2, column3, float_range_nullable)/');
 
-
         $integerRange = new FloatRange(1, 2);
 
         $this->createModel(
@@ -113,7 +112,6 @@ class SqlGenerationTest extends TestCase
             ['float_range_nullable' => $integerRange, 'column1' => 1, 'column2' => 2]
         );
         $this->assertNotEmpty($duplicatedModel->id);
-
 
         $this->createModel(
             ['float_range_nullable' => $integerRange, 'column1' => 1, 'column2' => 2, 'column3' => 3]

@@ -14,5 +14,4 @@ class FloatRangeCast extends RangeCast
     {
         return new FloatRange($matches[2], $matches[3], $matches[1], $matches[4]);
     }
-
 }

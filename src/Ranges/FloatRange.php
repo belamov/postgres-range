@@ -3,12 +3,10 @@
 namespace Belamov\PostgresRange\Ranges;
 
 /**
- * Class FloatRange
+ * Class FloatRange.
  *
  * @method float|null from()
  * @method float|null to()
- *
- * @package Belamov\PostgresRange\Ranges
  */
 class FloatRange extends Range
 {
@@ -18,6 +16,6 @@ class FloatRange extends Range
      */
     protected function transformBoundary(string $boundary): float
     {
-        return (float)$boundary;
+        return (float) $boundary;
     }
 }

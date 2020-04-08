@@ -18,7 +18,7 @@ abstract class RangeCast implements CastsAttributes
     public function set($model, $key, $value, $attributes): array
     {
         return [
-            $key => $this->serializeRange($value)
+            $key => $this->serializeRange($value),
         ];
     }
 
@@ -32,7 +32,7 @@ abstract class RangeCast implements CastsAttributes
             return null;
         }
 
-        return (string)$range;
+        return (string) $range;
     }
 
     /**
@@ -61,6 +61,7 @@ abstract class RangeCast implements CastsAttributes
     {
         $matches = [];
         preg_match('/([\[(])(.*),(.*)([])])/', $value, $matches);
+
         return $matches;
     }
 

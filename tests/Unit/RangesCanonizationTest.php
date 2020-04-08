@@ -15,32 +15,32 @@ class RangesCanonizationTest extends TestCase
         $range = new IntegerRange(10, 20, '(', ')');
         $this->assertEquals(11, $range->from());
         $this->assertEquals(20, $range->to());
-        $this->assertEquals('[11,20)', (string)$range);
+        $this->assertEquals('[11,20)', (string) $range);
 
         $range = new IntegerRange(10, 20, '(', ']');
         $this->assertEquals(11, $range->from());
         $this->assertEquals(21, $range->to());
-        $this->assertEquals('[11,21)', (string)$range);
+        $this->assertEquals('[11,21)', (string) $range);
 
         $range = new IntegerRange(10, 20, '[', ']');
         $this->assertEquals(10, $range->from());
         $this->assertEquals(21, $range->to());
-        $this->assertEquals('[10,21)', (string)$range);
+        $this->assertEquals('[10,21)', (string) $range);
 
         $range = new IntegerRange(10, 20, '[', ')');
         $this->assertEquals(10, $range->from());
         $this->assertEquals(20, $range->to());
-        $this->assertEquals('[10,20)', (string)$range);
+        $this->assertEquals('[10,20)', (string) $range);
 
         $range = new IntegerRange(null, 20, '(', ')');
         $this->assertEquals(null, $range->from());
         $this->assertEquals(20, $range->to());
-        $this->assertEquals('[,20)', (string)$range);
+        $this->assertEquals('[,20)', (string) $range);
 
         $range = new IntegerRange(10, null, '[', ']');
         $this->assertEquals(10, $range->from());
         $this->assertEquals(null, $range->to());
-        $this->assertEquals('[10,)', (string)$range);
+        $this->assertEquals('[10,)', (string) $range);
     }
 
     /** @test */
@@ -52,31 +52,31 @@ class RangesCanonizationTest extends TestCase
         $range = new DateRange($from->toDateString(), $to->toDateString(), '(', ')');
         $this->assertEquals($from->addDay(), $range->from());
         $this->assertEquals($to, $range->to());
-        $this->assertEquals("[{$from->addDay()->toDateString()},{$to->toDateString()})", (string)$range);
+        $this->assertEquals("[{$from->addDay()->toDateString()},{$to->toDateString()})", (string) $range);
 
         $range = new DateRange($from->toDateString(), $to->toDateString(), '(', ']');
         $this->assertEquals($from->addDay(), $range->from());
         $this->assertEquals($to->addDay(), $range->to());
-        $this->assertEquals("[{$from->addDay()->toDateString()},{$to->addDay()->toDateString()})", (string)$range);
+        $this->assertEquals("[{$from->addDay()->toDateString()},{$to->addDay()->toDateString()})", (string) $range);
 
         $range = new DateRange($from->toDateString(), $to->toDateString(), '[', ']');
         $this->assertEquals($from, $range->from());
         $this->assertEquals($to->addDay(), $range->to());
-        $this->assertEquals("[{$from->toDateString()},{$to->addDay()->toDateString()})", (string)$range);
+        $this->assertEquals("[{$from->toDateString()},{$to->addDay()->toDateString()})", (string) $range);
 
         $range = new DateRange($from->toDateString(), $to->toDateString(), '[', ')');
         $this->assertEquals($from, $range->from());
         $this->assertEquals($to, $range->to());
-        $this->assertEquals("[{$from->toDateString()},{$to->toDateString()})", (string)$range);
+        $this->assertEquals("[{$from->toDateString()},{$to->toDateString()})", (string) $range);
 
         $range = new DateRange(null, $to->toDateString(), '(', ')');
         $this->assertEquals(null, $range->from());
         $this->assertEquals($to, $range->to());
-        $this->assertEquals("[,{$to->toDateString()})", (string)$range);
+        $this->assertEquals("[,{$to->toDateString()})", (string) $range);
 
         $range = new DateRange($from->toDateString(), null, '[', ']');
         $this->assertEquals($from, $range->from());
         $this->assertEquals(null, $range->to());
-        $this->assertEquals("[{$from->toDateString()},)", (string)$range);
+        $this->assertEquals("[{$from->toDateString()},)", (string) $range);
     }
 }
