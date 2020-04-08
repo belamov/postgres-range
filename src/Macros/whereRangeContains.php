@@ -12,6 +12,6 @@ Builder::macro(
 Builder::macro(
     'orWhereRangeContains',
     function ($column, $value) {
-        return $this->whereRaw("{$column} @> ?", [$value], 'or');
+        return $this->whereRaw('? @> ?', [$column, $value], 'or');
     }
 );

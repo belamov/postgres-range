@@ -10,16 +10,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class MacrosTest extends TestCase
 {
     use RefreshDatabase;
+    private IntegerRange $range;
+    private string $columnName = 'integer_range';
 
     /** @test */
     public function where_range_contains_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::whereRangeContains($this->columnName, $this->range)
+            ->whereRangeContains($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::whereRangeContains('integer_range', $range)
-            ->whereRangeContains('integer_range', $range);
-        $rawSql = Range::whereRaw('integer_range @> ?', [$range])
-            ->whereRaw('integer_range @> ?', [$range]);
+        $rawSql = Range::whereRaw('? @> ?', [$this->columnName, $this->range])
+            ->whereRaw('? @> ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -28,12 +29,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function or_where_range_contains_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::orWhereRangeContains($this->columnName, $this->range)
+            ->orWhereRangeContains($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::orWhereRangeContains('integer_range', $range)
-            ->orWhereRangeContains('integer_range', $range);
-        $rawSql = Range::orWhereRaw('integer_range @> ?', [$range])
-            ->orWhereRaw('integer_range @> ?', [$range]);
+        $rawSql = Range::orWhereRaw('? @> ?', [$this->columnName, $this->range])
+            ->orWhereRaw('? @> ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -42,12 +42,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function where_range_is_contained_by_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::whereRangeIsContainedBy($this->columnName, $this->range)
+            ->whereRangeIsContainedBy($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::whereRangeIsContainedBy('integer_range', $range)
-            ->whereRangeIsContainedBy('integer_range', $range);
-        $rawSql = Range::whereRaw('integer_range <@ ?', [$range])
-            ->whereRaw('integer_range <@ ?', [$range]);
+        $rawSql = Range::whereRaw('? <@ ?', [$this->columnName, $this->range])
+            ->whereRaw('? <@ ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -56,12 +55,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function or_where_range_is_contained_by_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::orWhereRangeIsContainedBy($this->columnName, $this->range)
+            ->orWhereRangeIsContainedBy($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::orWhereRangeIsContainedBy('integer_range', $range)
-            ->orWhereRangeIsContainedBy('integer_range', $range);
-        $rawSql = Range::orWhereRaw('integer_range <@ ?', [$range])
-            ->orWhereRaw('integer_range <@ ?', [$range]);
+        $rawSql = Range::orWhereRaw('? <@ ?', [$this->columnName, $this->range])
+            ->orWhereRaw('? <@ ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -70,12 +68,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function where_range_is_overlaps_by_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::whereRangeOverlaps($this->columnName, $this->range)
+            ->whereRangeOverlaps($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::whereRangeOverlaps('integer_range', $range)
-            ->whereRangeOverlaps('integer_range', $range);
-        $rawSql = Range::whereRaw('integer_range && ?', [$range])
-            ->whereRaw('integer_range && ?', [$range]);
+        $rawSql = Range::whereRaw('? && ?', [$this->columnName, $this->range])
+            ->whereRaw('? && ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -84,12 +81,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function or_where_range_overlaps_by_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::orWhereRangeOverlaps($this->columnName, $this->range)
+            ->orWhereRangeOverlaps($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::orWhereRangeOverlaps('integer_range', $range)
-            ->orWhereRangeOverlaps('integer_range', $range);
-        $rawSql = Range::orWhereRaw('integer_range && ?', [$range])
-            ->orWhereRaw('integer_range && ?', [$range]);
+        $rawSql = Range::orWhereRaw('? && ?', [$this->columnName, $this->range])
+            ->orWhereRaw('? && ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -98,12 +94,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function where_range_is_strictly_left_of_by_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::whereRangeStrictlyLeftOf($this->columnName, $this->range)
+            ->whereRangeStrictlyLeftOf($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::whereRangeStrictlyLeftOf('integer_range', $range)
-            ->whereRangeStrictlyLeftOf('integer_range', $range);
-        $rawSql = Range::whereRaw('integer_range << ?', [$range])
-            ->whereRaw('integer_range << ?', [$range]);
+        $rawSql = Range::whereRaw('? << ?', [$this->columnName, $this->range])
+            ->whereRaw('? << ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -112,12 +107,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function or_where_range_strictly_left_of_by_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::orWhereRangeStrictlyLeftOf($this->columnName, $this->range)
+            ->orWhereRangeStrictlyLeftOf($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::orWhereRangeStrictlyLeftOf('integer_range', $range)
-            ->orWhereRangeStrictlyLeftOf('integer_range', $range);
-        $rawSql = Range::orWhereRaw('integer_range << ?', [$range])
-            ->orWhereRaw('integer_range << ?', [$range]);
+        $rawSql = Range::orWhereRaw('? << ?', [$this->columnName, $this->range])
+            ->orWhereRaw('? << ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -126,12 +120,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function where_range_is_strictly_right_of_by_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::whereRangeStrictlyRightOf($this->columnName, $this->range)
+            ->whereRangeStrictlyRightOf($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::whereRangeStrictlyRightOf('integer_range', $range)
-            ->whereRangeStrictlyRightOf('integer_range', $range);
-        $rawSql = Range::whereRaw('integer_range >> ?', [$range])
-            ->whereRaw('integer_range >> ?', [$range]);
+        $rawSql = Range::whereRaw('? >> ?', [$this->columnName, $this->range])
+            ->whereRaw('? >> ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -140,12 +133,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function or_where_range_strictly_right_of_by_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::orWhereRangeStrictlyRightOf($this->columnName, $this->range)
+            ->orWhereRangeStrictlyRightOf($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::orWhereRangeStrictlyRightOf('integer_range', $range)
-            ->orWhereRangeStrictlyRightOf('integer_range', $range);
-        $rawSql = Range::orWhereRaw('integer_range >> ?', [$range])
-            ->orWhereRaw('integer_range >> ?', [$range]);
+        $rawSql = Range::orWhereRaw('? >> ?', [$this->columnName, $this->range])
+            ->orWhereRaw('? >> ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -154,12 +146,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function where_range_does_not_extend_to_the_right_of_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::whereRangeDoesNotExtendToTheRightOf($this->columnName, $this->range)
+            ->whereRangeDoesNotExtendToTheRightOf($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::whereRangeDoesNotExtendToTheRightOf('integer_range', $range)
-            ->whereRangeDoesNotExtendToTheRightOf('integer_range', $range);
-        $rawSql = Range::whereRaw('integer_range &< ?', [$range])
-            ->whereRaw('integer_range &< ?', [$range]);
+        $rawSql = Range::whereRaw('? &< ?', [$this->columnName, $this->range])
+            ->whereRaw('? &< ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -168,12 +159,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function or_where_does_not_extend_to_the_right_of_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::orWhereRangeDoesNotExtendToTheRightOf($this->columnName, $this->range)
+            ->orWhereRangeDoesNotExtendToTheRightOf($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::orWhereRangeDoesNotExtendToTheRightOf('integer_range', $range)
-            ->orWhereRangeDoesNotExtendToTheRightOf('integer_range', $range);
-        $rawSql = Range::orWhereRaw('integer_range &< ?', [$range])
-            ->orWhereRaw('integer_range &< ?', [$range]);
+        $rawSql = Range::orWhereRaw('? &< ?', [$this->columnName, $this->range])
+            ->orWhereRaw('? &< ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -182,12 +172,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function where_range_does_not_extend_to_the_left_of_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::whereRangeDoesNotExtendToTheLeftOf($this->columnName, $this->range)
+            ->whereRangeDoesNotExtendToTheLeftOf($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::whereRangeDoesNotExtendToTheLeftOf('integer_range', $range)
-            ->whereRangeDoesNotExtendToTheLeftOf('integer_range', $range);
-        $rawSql = Range::whereRaw('integer_range &> ?', [$range])
-            ->whereRaw('integer_range &> ?', [$range]);
+        $rawSql = Range::whereRaw('? &> ?', [$this->columnName, $this->range])
+            ->whereRaw('? &> ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -196,12 +185,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function or_where_range_does_not_extend_to_the_left_of_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::orWhereRangeDoesNotExtendToTheLeftOf($this->columnName, $this->range)
+            ->orWhereRangeDoesNotExtendToTheLeftOf($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::orWhereRangeDoesNotExtendToTheLeftOf('integer_range', $range)
-            ->orWhereRangeDoesNotExtendToTheLeftOf('integer_range', $range);
-        $rawSql = Range::orWhereRaw('integer_range &> ?', [$range])
-            ->orWhereRaw('integer_range &> ?', [$range]);
+        $rawSql = Range::orWhereRaw('? &> ?', [$this->columnName, $this->range])
+            ->orWhereRaw('? &> ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -210,12 +198,11 @@ class MacrosTest extends TestCase
     /** @test */
     public function where_range_adjacent_to_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::whereRangeAdjacentTo($this->columnName, $this->range)
+            ->whereRangeAdjacentTo($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::whereRangeAdjacentTo('integer_range', $range)
-            ->whereRangeAdjacentTo('integer_range', $range);
-        $rawSql = Range::whereRaw('integer_range -|- ?', [$range])
-            ->whereRaw('integer_range -|- ?', [$range]);
+        $rawSql = Range::whereRaw('? -|- ?', [$this->columnName, $this->range])
+            ->whereRaw('? -|- ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
@@ -224,14 +211,19 @@ class MacrosTest extends TestCase
     /** @test */
     public function or_where_range_adjacent_to_macro_test(): void
     {
-        $range = new IntegerRange(10, 11);
+        $sqlWithMacro = Range::orWhereRangeAdjacentTo($this->columnName, $this->range)
+            ->orWhereRangeAdjacentTo($this->columnName, $this->range);
 
-        $sqlWithMacro = Range::orWhereRangeAdjacentTo('integer_range', $range)
-            ->orWhereRangeAdjacentTo('integer_range', $range);
-        $rawSql = Range::orWhereRaw('integer_range -|- ?', [$range])
-            ->orWhereRaw('integer_range -|- ?', [$range]);
+        $rawSql = Range::orWhereRaw('? -|- ?', [$this->columnName, $this->range])
+            ->orWhereRaw('? -|- ?', [$this->columnName, $this->range]);
 
         $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
         $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->range = new IntegerRange(10, 11);
     }
 }

@@ -28,7 +28,7 @@ class SqlGenerator
     /**
      * @param  string  $columnName
      * @param  bool  $nullable
-     * @param  null  $default
+     * @param  string|null  $default
      */
     public function timestampRange(string $columnName, bool $nullable = false, ?string $default = null): void
     {
@@ -47,10 +47,8 @@ class SqlGenerator
         $nullableString = $this->getNullString($nullable);
         $defaultString = $this->getDefaultString($default);
         DB::statement(
-            "
-            ALTER TABLE {$this->tableName}
-            ADD COLUMN {$columnName} {$type} {$nullableString} {$defaultString};
-        "
+            "ALTER TABLE {$this->tableName}
+            ADD COLUMN {$columnName} {$type} {$nullableString} {$defaultString};"
         );
     }
 
@@ -86,15 +84,11 @@ class SqlGenerator
     private function addTimeRangeType(): void
     {
         DB::statement(
-            "
-            CREATE OR REPLACE FUNCTION {$this->timeDiffFunctionName}(x time, y time) RETURNS float8 AS
-            'SELECT EXTRACT(EPOCH FROM (x - y))' LANGUAGE sql STRICT IMMUTABLE;
-        "
+            "CREATE OR REPLACE FUNCTION {$this->timeDiffFunctionName}(x time, y time) RETURNS float8 AS
+        'SELECT EXTRACT(EPOCH FROM (x - y))' LANGUAGE sql STRICT IMMUTABLE;"
         );
 
-        DB::statement(
-            "
-        DO $$
+        DB::statement("DO $$
         BEGIN
             IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = '{$this->timeRangeTypeName}') THEN
                 CREATE TYPE {$this->timeRangeTypeName} AS RANGE (
@@ -102,8 +96,7 @@ class SqlGenerator
                     subtype_diff = {$this->timeDiffFunctionName}
                 );
             END IF;
-        END$$;
-        "
+        END$$;"
         );
     }
 
@@ -112,11 +105,7 @@ class SqlGenerator
      */
     public function gistIndex(string $columnName): void
     {
-        DB::statement(
-            "
-            CREATE INDEX ON {$this->tableName} USING GIST ({$columnName});
-        "
-        );
+        DB::statement("CREATE INDEX ON {$this->tableName} USING GIST ({$columnName});");
     }
 
     /**
@@ -140,10 +129,8 @@ class SqlGenerator
     private function addGistUnique(string $columnName): void
     {
         DB::statement(
-            "
-            ALTER TABLE {$this->tableName}
-            ADD EXCLUDE USING GIST ({$columnName} WITH &&);
-        "
+            "ALTER TABLE {$this->tableName}
+            ADD EXCLUDE USING GIST ({$columnName} WITH &&);"
         );
     }
 
@@ -158,10 +145,8 @@ class SqlGenerator
         $columns = $this->getAdditionalColumnsForIndex($additionalColumns);
 
         DB::statement(
-            "
-            ALTER TABLE {$this->tableName}
-            ADD EXCLUDE USING GIST ({$columns} {$columnName} WITH &&);
-        "
+            "ALTER TABLE {$this->tableName}
+            ADD EXCLUDE USING GIST ({$columns} {$columnName} WITH &&);"
         );
     }
 
