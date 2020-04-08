@@ -1,9 +1,11 @@
 # Very short description of the package
 
-![Testing Laravel with PostgreSQL](https://github.com/belamov/postgres-range/workflows/Testing%20Laravel%20with%20PostgreSQL/badge.svg)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/belamov/postgres-range.svg?style=flat-square)](https://packagist.org/packages/belamov/postgres-range)
-[![Total Downloads](https://img.shields.io/packagist/dt/belamov/postgres-range.svg?style=flat-square)](https://packagist.org/packages/belamov/postgres-range)
+![tests](https://github.com/belamov/postgres-range/workflows/tests/badge.svg)
 [![StyleCI](https://github.styleci.io/repos/253326230/shield?branch=master)](https://github.styleci.io/repos/253326230)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/belamov/postgres-range/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/belamov/postgres-range/?branch=master)
+[![Total Downloads](https://img.shields.io/packagist/dt/belamov/postgres-range.svg?style=flat-square)](https://packagist.org/packages/belamov/postgres-range)
+
 This package provides support of PostgreSQL's range types for Laravel 7+.
 
 ## Installation

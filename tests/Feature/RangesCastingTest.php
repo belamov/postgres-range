@@ -9,6 +9,8 @@ use Belamov\PostgresRange\Ranges\TimeRange;
 use Belamov\PostgresRange\Ranges\TimestampRange;
 use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
+use CreateRangesAdditionalTestTable;
+use CreateRangesTestTable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RangesCastingTest extends TestCase
@@ -197,7 +199,7 @@ class RangesCastingTest extends TestCase
         include_once __DIR__.'/../database/migrations/0000_00_00_000001_create_ranges_additional_test_table.php';
 
         // run the up() method of that migration class
-        (new \CreateRangesTestTable())->up();
-        (new \CreateRangesAdditionalTestTable())->up();
+        (new CreateRangesTestTable())->up();
+        (new CreateRangesAdditionalTestTable())->up();
     }
 }

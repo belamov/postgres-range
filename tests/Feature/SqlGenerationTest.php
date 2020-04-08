@@ -5,6 +5,8 @@ namespace Belamov\PostgresRange\Tests\Unit;
 use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
 use Belamov\PostgresRange\Tests\TestCase;
+use CreateRangesAdditionalTestTable;
+use CreateRangesTestTable;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
@@ -133,7 +135,7 @@ class SqlGenerationTest extends TestCase
         include_once __DIR__.'/../database/migrations/0000_00_00_000001_create_ranges_additional_test_table.php';
 
         // run the up() method of that migration class
-        (new \CreateRangesTestTable())->up();
-        (new \CreateRangesAdditionalTestTable())->up();
+        (new CreateRangesTestTable())->up();
+        (new CreateRangesAdditionalTestTable())->up();
     }
 }
