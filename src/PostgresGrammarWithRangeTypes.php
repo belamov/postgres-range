@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Belamov\PostgresRange;
-
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\Grammars\PostgresGrammar;
@@ -60,6 +58,7 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
     public function typeTimeRange(): string
     {
         $this->addTimeRangeType();
+
         return 'timerange';
     }
 
@@ -94,7 +93,7 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
      */
     public function compileUniqueRange(Blueprint $blueprint, Fluent $command): string
     {
-        if (!empty($command->additionalColumns)) {
+        if (! empty($command->additionalColumns)) {
             $this->addBtreeGistExtension();
         }
 
