@@ -64,12 +64,12 @@ class SqlGenerationTest extends TestCase
         );
 
         $this->assertEquals(
-            'ranges_time_range_with_default_idx',
+            'ranges_time_range_with_default_spatialindex',
             $indexes[1]->indexname
         );
 
         $this->assertEquals(
-            'CREATE INDEX ranges_time_range_with_default_idx ON public.ranges USING gist (time_range_with_default)',
+            'CREATE INDEX ranges_time_range_with_default_spatialindex ON public.ranges USING gist (time_range_with_default)',
             $indexes[1]->indexdef
         );
     }

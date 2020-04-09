@@ -21,17 +21,14 @@ class CreateRangesTestTable extends Migration
             'ranges',
             static function (Blueprint $table) {
                 $table->id();
+                $table->timestampRange('timestamp_range')->nullable();
+                $table->timeRange('time_range')->nullable();
+                $table->floatRange('float_range')->nullable();
+                $table->integerRange('integer_range')->nullable();
+                $table->bigIntegerRange('bigint_range')->nullable();
+                $table->dateRange('date_range')->nullable();
             }
         );
-
-        $sqlGenerator = new SqlGenerator('ranges');
-
-        $sqlGenerator->timestampRange('timestamp_range', true);
-        $sqlGenerator->timeRange('time_range', true);
-        $sqlGenerator->numberRange('float_range', true);
-        $sqlGenerator->integerRange('integer_range', true);
-        $sqlGenerator->bigintRange('bigint_range', true);
-        $sqlGenerator->dateRange('date_range', true);
     }
 
     /**
