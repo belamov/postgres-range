@@ -4,14 +4,14 @@ use Illuminate\Database\Query\Builder;
 
 Builder::macro(
     'whereRangeContains',
-    function ($column, $value) {
-        return $this->whereRaw('? @> ?', [$column, $value]);
+    function ($left, $right) {
+        return $this->whereRaw('? @> ?', [$left, $right]);
     }
 );
 
 Builder::macro(
     'orWhereRangeContains',
-    function ($column, $value) {
-        return $this->whereRaw('? @> ?', [$column, $value], 'or');
+    function ($left, $right) {
+        return $this->whereRaw('? @> ?', [$left, $right], 'or');
     }
 );

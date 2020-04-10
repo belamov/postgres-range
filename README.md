@@ -1,4 +1,4 @@
-# Laravel package for PosgreSQL range type support
+# Laravel package for PostgreSQL range types support
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/belamov/postgres-range.svg?style=flat-square)](https://packagist.org/packages/belamov/postgres-range)
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/belamov/postgres-range)
@@ -490,7 +490,12 @@ $range->from(); // equals $from
 $range->to(); // equals $to->addDay()
 (string) $range; // '[2010-01-10,2010-01-16)'
 ```
- 
+## Note on extending PostgresGrammar
+
+This package extends Laravel's `Illuminate\Database\Schema\Grammars\PostgresGrammar` and `Illuminate\Database\PostgresConnection` classes to provide fluent api for range columns in migrations.
+
+If you are already extending any of this classes in your project, please consider extending them from `Belamov\PostgresRange\PostgresGrammarWithRangeTypes` or `Belamov\PostgresRange\PostgresGrammarWithRangeTypes` classes.
+
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.

@@ -110,10 +110,10 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
     }
 
     /**
-     * @param  array  $additionalColumns
+     * @param  array|null  $additionalColumns
      * @return string
      */
-    private function getAdditionalColumnsForExclude(array $additionalColumns): string
+    private function getAdditionalColumnsForExclude(?array $additionalColumns): string
     {
         $columns = '';
 

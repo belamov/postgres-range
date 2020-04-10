@@ -2,12 +2,6 @@
 
 namespace Belamov\PostgresRange\Ranges;
 
-/**
- * Class Range.
- *
- * @property string $fromBound
- * @property string $toBound
- */
 abstract class Range
 {
     protected string $fromBound;

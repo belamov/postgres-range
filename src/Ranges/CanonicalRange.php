@@ -5,7 +5,7 @@ namespace Belamov\PostgresRange\Ranges;
 /**
  * Class CanonicalRange.
  *
- * Range that automatically canonicalizes its boundary to [)
+ * Range that automatically canonicalizes its boundaries to [)
  */
 abstract class CanonicalRange extends Range
 {
@@ -36,7 +36,7 @@ abstract class CanonicalRange extends Range
     }
 
     /**
-     * @param string $boundary
+     * @param  string  $boundary
      * @return string
      */
     abstract protected function addToDiscreteBoundary(string $boundary): string;

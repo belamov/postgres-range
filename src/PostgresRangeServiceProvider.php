@@ -16,7 +16,7 @@ class PostgresRangeServiceProvider extends ServiceProvider
 
     protected function setCustomResolverForPgsql(): void
     {
-        Connection::resolverFor('pgsql', function ($connection, $database, $prefix, $config) {
+        Connection::resolverFor('pgsql', static function ($connection, $database, $prefix, $config) {
             return new PostgresConnection($connection, $database, $prefix, $config);
         });
     }
