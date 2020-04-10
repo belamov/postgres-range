@@ -36,10 +36,10 @@ abstract class CanonicalRange extends Range
     }
 
     /**
-     * @param $boundary
+     * @param string $boundary
      * @return string
      */
-    abstract protected function addToDiscreteBoundary($boundary): string;
+    abstract protected function addToDiscreteBoundary(string $boundary): string;
 
     private function canonicalizeUpperBoundary(): void
     {

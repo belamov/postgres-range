@@ -15,10 +15,10 @@ class DateRange extends CanonicalRange
     use StringifiesBoundariesFromDateTimeInterface;
 
     /**
-     * @param $boundary
+     * @param  string  $boundary
      * @return string
      */
-    protected function addToDiscreteBoundary($boundary): string
+    protected function addToDiscreteBoundary(string $boundary): string
     {
         return $this->transformBoundary($boundary)->addDay()->toDateString();
     }

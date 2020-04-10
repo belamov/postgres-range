@@ -11,10 +11,10 @@ namespace Belamov\PostgresRange\Ranges;
 class IntegerRange extends CanonicalRange
 {
     /**
-     * @param $boundary
+     * @param  string  $boundary
      * @return string
      */
-    protected function addToDiscreteBoundary($boundary): string
+    protected function addToDiscreteBoundary(string $boundary): string
     {
         return (string) ($this->transformBoundary($boundary) + 1);
     }
