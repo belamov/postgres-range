@@ -11,9 +11,6 @@ use Illuminate\Support\Fluent;
 
 class PostgresGrammarWithRangeTypes extends PostgresGrammar
 {
-    protected string $timeRangeTypeName = 'timerange';
-    protected string $timeDiffFunctionName = 'time_subtype_diff';
-
     /**
      * @return string
      */
@@ -59,23 +56,27 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
      */
     public function typeTimeRange(): string
     {
+
         $this->addTimeRangeType();
-        return 'timerange';
+        return config('postgres-range.timerange_typename');
     }
 
     protected function addTimeRangeType(): void
     {
+        $timeDiffFunctionName = config('postgres-range.timerange_subtype_diff_function_name');
+        $timeRangeTypeName = config('postgres-range.timerange_typename');
+
         DB::statement(
-            "CREATE OR REPLACE FUNCTION {$this->timeDiffFunctionName}(x time, y time) RETURNS float8 AS
+            "CREATE OR REPLACE FUNCTION {$timeDiffFunctionName}(x time, y time) RETURNS float8 AS
         'SELECT EXTRACT(EPOCH FROM (x - y))' LANGUAGE sql STRICT IMMUTABLE;"
         );
 
         DB::statement("DO $$
         BEGIN
-            IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = '{$this->timeRangeTypeName}') THEN
-                CREATE TYPE {$this->timeRangeTypeName} AS RANGE (
+            IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = '{$timeRangeTypeName}') THEN
+                CREATE TYPE {$timeRangeTypeName} AS RANGE (
                     subtype = time,
-                    subtype_diff = {$this->timeDiffFunctionName}
+                    subtype_diff = {$timeDiffFunctionName}
                 );
             END IF;
         END$$;"

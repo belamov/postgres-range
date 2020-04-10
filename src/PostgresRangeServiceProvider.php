@@ -8,9 +8,10 @@ use Illuminate\Support\ServiceProvider;
 
 class PostgresRangeServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $this->setCustomResolverForPgsql();
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'postgres-range');
     }
 
     protected function setCustomResolverForPgsql(): void
@@ -25,6 +26,14 @@ class PostgresRangeServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if ($this->app->runningInConsole()) {
+
+            $this->publishes([
+                __DIR__.'/../config/config.php' => config_path('postgres-range.php'),
+            ], 'config');
+
+        }
+
         Collection::make(glob(__DIR__.'/Macros/*.php'))->mapWithKeys(
             static function ($path) {
                 return [$path => pathinfo($path, PATHINFO_FILENAME)];
@@ -34,5 +43,6 @@ class PostgresRangeServiceProvider extends ServiceProvider
                 require_once $path;
             }
         );
+
     }
 }

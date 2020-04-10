@@ -184,6 +184,8 @@ If you discover any security related issues, please email business@belamov.com i
 ## Credits
 
 - [belamov](https://github.com/belamov)
+- [How to extend or overwrite Query Grammar in Laravel 5 article](https://medium.com/@daniilromazanov/how-to-extend-query-grammar-in-laravel-fb3d2d6de6d4) by Daniil Romazanov
+- https://laravelpackage.com/
 - [All Contributors](../../contributors)
 
 ## License
