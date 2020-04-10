@@ -27,11 +27,9 @@ class PostgresRangeServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
-
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('postgres-range.php'),
             ], 'config');
-
         }
 
         Collection::make(glob(__DIR__.'/Macros/*.php'))->mapWithKeys(
@@ -43,6 +41,5 @@ class PostgresRangeServiceProvider extends ServiceProvider
                 require_once $path;
             }
         );
-
     }
 }
