@@ -462,7 +462,7 @@ Schema::table(
 
 The built-in range types `int4range`, `int8range`, and `daterange` all use a canonical form that includes the lower bound and excludes the upper bound; that is, [). ([More in official documentation](https://www.postgresql.org/docs/9.3/rangetypes.html#RANGETYPES-DISCRETE))
 
-So to reflect this behaviour [DateRange](#daterange-object) and [IntegerRange](#integerrange-object) object will be canonialize during initialization like so:
+So to reflect this behaviour [DateRange](#daterange-object) and [IntegerRange](#integerrange-object) object will be canonialized during initialization like so:
 
 ```php
 // IntegerRange
@@ -494,7 +494,7 @@ $range->to(); // equals $to->addDay()
 
 This package extends Laravel's `Illuminate\Database\Schema\Grammars\PostgresGrammar` and `Illuminate\Database\PostgresConnection` classes to provide fluent api for range columns in migrations.
 
-If you are already extending any of this classes in your project, please consider extending them from `Belamov\PostgresRange\PostgresGrammarWithRangeTypes` or `Belamov\PostgresRange\PostgresGrammarWithRangeTypes` classes.
+If you are already extending any of this classes in your project, please consider extending your implementation from `Belamov\PostgresRange\PostgresGrammarWithRangeTypes` or `Belamov\PostgresRange\PostgresGrammarWithRangeTypes` classes.
 
 ### Changelog
 
@@ -510,7 +510,7 @@ If you discover any security related issues, please email business@belamov.com i
 
 ## Credits
 
-- [belamov](https:belamov.com)
+- [belamov](https://belamov.com)
 - [Date Ranges in Laravel](https://medium.com/@palypster/ranges-in-laravel-7-using-postgresql-c4bc69b91758) by [Pavol Perdík](https://github.com/palypster)
 - [How to extend or overwrite Query Grammar in Laravel 5](https://medium.com/@daniilromazanov/how-to-extend-query-grammar-in-laravel-fb3d2d6de6d4) by Daniil Romazanov
 - https://laravelpackage.com/ - great tutorial for developing packages for laravel
