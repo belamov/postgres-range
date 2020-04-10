@@ -83,7 +83,7 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
 
     public function getFluentCommands(): array
     {
-        return array_merge(parent::getFluentCommands(), ['uniqueRange']);
+        return array_merge(parent::getFluentCommands(), ['excludeRangeOverlapping']);
     }
 
     /**
@@ -91,7 +91,7 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
      * @param  Fluent  $command
      * @return string
      */
-    public function compileUniqueRange(Blueprint $blueprint, Fluent $command): string
+    public function compileExcludeRangeOverlapping(Blueprint $blueprint, Fluent $command): string
     {
         if (! empty($command->additionalColumns)) {
             $this->addBtreeGistExtension();

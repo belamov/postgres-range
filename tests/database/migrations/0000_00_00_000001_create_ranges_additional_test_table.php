@@ -40,9 +40,9 @@ class CreateRangesAdditionalTestTable extends Migration
 
                 $table->spatialIndex('time_range_with_default');
 
-                $table->uniqueRange('bigint_range_nullable');
-                $table->uniqueRange('integer_range_nullable', 'column1');
-                $table->uniqueRange('float_range_nullable', 'column1', 'column2', 'column3');
+                $table->excludeRangeOverlapping('bigint_range_nullable');
+                $table->excludeRangeOverlapping('integer_range_nullable', 'column1');
+                $table->excludeRangeOverlapping('float_range_nullable', 'column1', 'column2', 'column3');
             }
         );
     }

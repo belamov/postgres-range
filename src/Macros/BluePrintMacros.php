@@ -26,8 +26,8 @@ Blueprint::macro('timeRange', function (string $columnName) {
     return $this->addColumn('timerange', $columnName);
 });
 
-Blueprint::macro('uniqueRange', function ($columnName, ...$additionalColumns) {
-    return $this->addCommand('uniqueRange', [
+Blueprint::macro('excludeRangeOverlapping', function ($columnName, ...$additionalColumns) {
+    return $this->addCommand('excludeRangeOverlapping', [
         'column' => $columnName,
         'additionalColumns' => $additionalColumns,
     ]);
