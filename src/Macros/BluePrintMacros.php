@@ -29,6 +29,6 @@ Blueprint::macro('timeRange', function (string $columnName) {
 Blueprint::macro('uniqueRange', function ($columnName, ...$additionalColumns) {
     return $this->addCommand('uniqueRange', [
         'column' => $columnName,
-        'additionalColumns' => $additionalColumns
+        'additionalColumns' => $additionalColumns,
     ]);
 });
