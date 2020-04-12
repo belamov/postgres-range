@@ -10,3 +10,4 @@
 /.editorconfig      export-ignore
 /docs               -diff
 /docs               linguist-vendored
+/docs-src           linguist-vendored
