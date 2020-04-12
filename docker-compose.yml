@@ -32,6 +32,7 @@ services:
           dockerfile: Dockerfile-node
         volumes:
             - ./docs:/app/docs
+            - ./docs-source:/app/docs-source
         ports:
             - 8080:8080
         tty: true

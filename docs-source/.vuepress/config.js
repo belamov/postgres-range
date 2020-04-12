@@ -3,6 +3,7 @@ const base = isDev ? '/' : '/postgres-range/';
 
 module.exports = {
     base,
+    dest: '/app/docs',
     title: 'postgres-range',
     description: 'Support of PostgreSQL\'s range types in your Laravel app',
     themeConfig: {
