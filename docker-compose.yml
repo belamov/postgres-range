@@ -11,6 +11,7 @@ services:
         working_dir: /app
         build:
             context: ./
+            dockerfile: Dockerfile-php
         volumes:
             - *app-mount
         environment:
@@ -25,3 +26,13 @@ services:
             - database.env
         ports:
             - 5432:5432
+    node:
+        build:
+          context: ./
+          dockerfile: Dockerfile-node
+        volumes:
+            - ./docs:/app/docs
+        ports:
+            - 8080:8080
+        tty: true
+        network_mode: host

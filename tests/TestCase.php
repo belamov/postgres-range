@@ -16,12 +16,8 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'ranges'),
             'username' => env('DB_USERNAME', 'ranges'),
-            'password' => env('DB_PASSWORD', '450ta0HMbuASVWlT'),
+            'password' => env('DB_PASSWORD', 'ranges'),
             'charset' => 'utf8',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'schema' => 'public',
-            'sslmode' => 'prefer',
         ]);
     }
 

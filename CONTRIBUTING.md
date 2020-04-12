@@ -4,6 +4,16 @@ Contributions are **welcome** and will be fully **credited**.
 
 Please read and understand the contribution guide before creating an issue or pull request.
 
+## Available helper commadns
+
+This package uses docker for running tests and generating documentation. 
+
+There are some scripts that will help you out:
+
+- `/tests.sh` - running tests with phpunit
+- `/docs-dev.sh` - hosting docs for development on your http://localhost:8080 
+- `/docs-build.sh` - compiles docs to html. be sure to run this command if you updated documentation
+
 ## Etiquette
 
 This project is open source, and as such, the maintainers give their free time to build and maintain the source code
@@ -44,7 +54,7 @@ If the project maintainer has any additional requirements, you will find them li
 
 - **Add tests!** - Your patch won't be accepted if it doesn't have tests.
 
-- **Document any change in behaviour** - Make sure the `README.md` and any other relevant documentation are kept up-to-date.
+- **Document any change in behaviour** - Make sure that documentation is kept up-to-date.
 
 - **Consider our release cycle** - We try to follow [SemVer v2.0.0](https://semver.org/). Randomly breaking public APIs is not an option.
 
