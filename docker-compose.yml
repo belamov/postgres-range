@@ -22,8 +22,11 @@ services:
     db:
         image: postgres:latest
         hostname: db
-        env_file:
-            - database.env
+        environment:
+            - POSTGRES_DB=ranges
+            - POSTGRES_USER=ranges
+            - POSTGRES_PASSWORD=ranges
+
         ports:
             - 5432:5432
     node:
@@ -32,7 +35,7 @@ services:
           dockerfile: Dockerfile-node
         volumes:
             - ./docs:/app/docs
-            - ./docs-source:/app/docs-source
+            - ./docs-src:/app/docs-src
         ports:
             - 8080:8080
         tty: true
