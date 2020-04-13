@@ -3,25 +3,24 @@ version: '3.5'
 x-app-mount:
   &app-mount
     type: bind
-    source: ./
+    source: ../
     target: /app
 
 services:
     php:
         working_dir: /app
         build:
-            context: ./
-            dockerfile: Dockerfile-php
+            context: ../
+            dockerfile: docker/Dockerfile-php
         volumes:
             - *app-mount
-        environment:
-            - XDEBUG_CONFIG="idekey=PHPSTORM remote_enable=On remote_port=9001 profiler_enable_trigger=On profiler_output_dir=/app/docker/data/php/profile"
         depends_on:
             - db
 
     db:
         image: postgres:latest
         hostname: db
+        container_name: ranges-db
         environment:
             - POSTGRES_DB=ranges
             - POSTGRES_USER=ranges
@@ -31,11 +30,11 @@ services:
             - 5432:5432
     node:
         build:
-          context: ./
-          dockerfile: Dockerfile-node
+          context: ../
+          dockerfile: docker/Dockerfile-node
         volumes:
-            - ./docs:/app/docs
-            - ./docs-src:/app/docs-src
+            - ../docs:/app/docs
+            - ../docs-src:/app/docs-src
         ports:
             - 8080:8080
         tty: true

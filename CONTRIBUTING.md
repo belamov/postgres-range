@@ -4,15 +4,15 @@ Contributions are **welcome** and will be fully **credited**.
 
 Please read and understand the contribution guide before creating an issue or pull request.
 
-## Available helper commadns
+## Available helper scripts
 
 This package uses docker for running tests and generating documentation. 
 
 There are some scripts that will help you out:
 
-- `/tests.sh` - running tests with phpunit
-- `/docs-dev.sh` - hosting docs for development on your http://localhost:8080 
-- `/docs-build.sh` - compiles docs to html. be sure to run this command if you updated documentation
+- `scripts/tests.sh` - running tests with phpunit
+- `scripts/docs-dev.sh` - hosting docs for development on your http://localhost:8080 
+- `scripts/docs-build.sh` - compiles docs to html. be sure to run this command if you updated documentation
 
 ## Etiquette
 
