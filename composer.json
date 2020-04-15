@@ -2,10 +2,16 @@
     "name": "belamov/postgres-range",
     "description": "Postgres range types support for laravel",
     "keywords": [
-        "belamov",
+        "daterange",
+        "tsrange",
+        "numrange",
+        "int4range",
+        "int8range",
+        "timerange",
         "postgres-range",
         "laravel",
-        "postgres"
+        "postgres",
+        "package"
     ],
     "homepage": "https://github.com/belamov/postgres-range",
     "license": "MIT",
