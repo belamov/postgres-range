@@ -6,7 +6,7 @@ Please read and understand the contribution guide before creating an issue or pu
 
 ## Available helper scripts
 
-This package uses docker for running tests and generating documentation. 
+You can use docker for running tests and generating documentation. 
 
 There are some scripts that will help you out:
 
