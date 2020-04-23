@@ -27,4 +27,9 @@ class IntegerRange extends CanonicalRange
     {
         return (int) $boundary;
     }
+
+    public function forSql(): string
+    {
+        return "'$this'";
+    }
 }

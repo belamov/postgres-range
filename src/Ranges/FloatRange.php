@@ -18,4 +18,9 @@ class FloatRange extends Range
     {
         return (float) $boundary;
     }
+
+    public function forSql(): string
+    {
+        return "'$this'::numrange";
+    }
 }

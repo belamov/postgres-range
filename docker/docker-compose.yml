@@ -20,7 +20,6 @@ services:
     db:
         image: postgres:latest
         hostname: db
-        container_name: ranges-db
         environment:
             - POSTGRES_DB=ranges
             - POSTGRES_USER=ranges

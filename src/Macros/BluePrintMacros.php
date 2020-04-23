@@ -1,34 +1,36 @@
 <?php
 
+namespace Belamov\PostgresRange\Macros;
+
 use Illuminate\Database\Schema\Blueprint;
 
-Blueprint::macro('dateRange', function (string $columnName) {
-    return $this->addColumn('daterange', $columnName);
-});
+class BluePrintMacros
+{
+    private array $columnTypes = [
+        ['dateRange', 'daterange'],
+        ['timestampRange', 'tsrange'],
+        ['floatRange', 'numrange'],
+        ['integerRange', 'int4range'],
+        ['bigIntegerRange', 'int8range'],
+        ['timeRange', 'timerange'],
+    ];
 
-Blueprint::macro('timestampRange', function (string $columnName) {
-    return $this->addColumn('tsrange', $columnName);
-});
+    public function register(): void
+    {
+        foreach ($this->columnTypes as [$columnTypeForMacro, $columnTypeForPostgres]) {
+            Blueprint::macro(
+                $columnTypeForMacro,
+                fn(string $columnName) => $this->addColumn($columnTypeForPostgres, $columnName)
+            );
+        }
 
-Blueprint::macro('floatRange', function (string $columnName) {
-    return $this->addColumn('numrange', $columnName);
-});
+        Blueprint::macro('excludeRangeOverlapping', function ($columnName, ...$additionalColumns) {
+            return $this->addCommand('excludeRangeOverlapping', [
+                'column' => $columnName,
+                'additionalColumns' => $additionalColumns,
+            ]);
+        });
+    }
+}
 
-Blueprint::macro('integerRange', function (string $columnName) {
-    return $this->addColumn('int4range', $columnName);
-});
 
-Blueprint::macro('bigIntegerRange', function (string $columnName) {
-    return $this->addColumn('int8range', $columnName);
-});
-
-Blueprint::macro('timeRange', function (string $columnName) {
-    return $this->addColumn('timerange', $columnName);
-});
-
-Blueprint::macro('excludeRangeOverlapping', function ($columnName, ...$additionalColumns) {
-    return $this->addCommand('excludeRangeOverlapping', [
-        'column' => $columnName,
-        'additionalColumns' => $additionalColumns,
-    ]);
-});

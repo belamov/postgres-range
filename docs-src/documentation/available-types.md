@@ -76,6 +76,7 @@ API:
 $range->from(); // CarbonImmutable object
 $range->to(); // CarbonImmutable object
 (string) $range; // [2010-01-10,2010-01-15)
+$range->forSql(); // '[2010-01-10,2010-01-15)'::daterange
 ```
 Updating or creating model:
 ```php
@@ -154,6 +155,7 @@ API:
 $range->from(); // CarbonImmutable object
 $range->to(); // CarbonImmutable object
 (string) $range; // [2010-01-01 14:30:30,2010-01-02 14:30:30)
+$range->forSql(); // '[2010-01-01 14:30:30,2010-01-02 14:30:30)'::tsrange
 ```
 
 Model updating or creating:
@@ -224,6 +226,7 @@ API:
 $range->from(); // 1.5
 $range->to(); // 2.5
 (string) $range; // [1.5,2.5)
+$range->forSql(); // '[1.5,2.5)'::numrange
 ```
 
 Model updating or creating:
@@ -303,6 +306,7 @@ API:
 $range->from(); // 10
 $range->to(); // 20
 (string) $range; // [10,20)
+$range->forSql(); // '[10,20)'
 ```
 
 Model updating or creating:
@@ -424,9 +428,11 @@ $range = new TimestampRange(Carbon::parse('14:30:30'), Carbon::now(), '[', ')')
 API:
 
 ```php
-$range->from(); // '14:30:30'
-$range->to(); // '15:30:30'
-(string) $range; // '[14:30:30,15:30:30)'
+$range->from(); // 14:30:30
+$range->to(); // 15:30:30
+(string) $range; // [14:30:30,15:30:30)
+$range->forSql(); // '[14:30:30,15:30:30)'::timerange 
+// (if you haven't change timerange typename in config)
 ```
 
 Model updating or creating:

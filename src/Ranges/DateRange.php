@@ -39,4 +39,12 @@ class DateRange extends CanonicalRange
     {
         return 'Y-m-d';
     }
+
+    /**
+     * @return string
+     */
+    public function forSql(): string
+    {
+        return "'$this'::daterange";
+    }
 }

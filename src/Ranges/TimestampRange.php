@@ -30,4 +30,9 @@ class TimestampRange extends Range
     {
         return 'Y-m-d H:i:s';
     }
+
+    public function forSql(): string
+    {
+        return "'$this'::tsrange";
+    }
 }

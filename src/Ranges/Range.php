@@ -54,4 +54,9 @@ abstract class Range
     {
         return "{$this->fromBound}{$this->from},{$this->to}{$this->toBound}";
     }
+
+    /**
+     * @return string
+     */
+    abstract public function forSql(): string;
 }

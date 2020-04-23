@@ -1,229 +1,87 @@
 <?php
 
-namespace Belamov\PostgresRange\Tests\Unit;
+namespace Belamov\PostgresRange\Tests\Feature;
 
+use Belamov\PostgresRange\Macros\QueryBuilderMacros;
 use Belamov\PostgresRange\Models\Range;
+use Belamov\PostgresRange\Ranges\DateRange;
+use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
+use Belamov\PostgresRange\Ranges\TimeRange;
+use Belamov\PostgresRange\Ranges\TimestampRange;
 use Belamov\PostgresRange\Tests\TestCase;
+use Carbon\Carbon;
+use CreateRangesTestTable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class MacrosTest extends TestCase
 {
     use RefreshDatabase;
+
     private IntegerRange $range;
     private string $columnName = 'integer_range';
 
     /** @test */
-    public function where_range_contains_macro_test(): void
+    public function macros_test(): void
     {
-        $sqlWithMacro = Range::whereRangeContains($this->columnName, $this->range)
-            ->whereRangeContains($this->columnName, $this->range);
+        $macros = new QueryBuilderMacros();
 
-        $rawSql = Range::whereRaw('? @> ?', [$this->columnName, $this->range])
-            ->whereRaw('? @> ?', [$this->columnName, $this->range]);
+        foreach ($macros->macrosParams as [$method, $operator]) {
+            $methodName = "where$method";
+            $orMethodName = "orWhere$method";
 
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
+            $sqlWithMacro = Range::$methodName($this->columnName, $this->range)
+                ->$orMethodName($this->columnName, $this->range);
+
+            $rawSql = "select * from \"ranges\" where {$this->columnName} {$operator} {$this->range->forSql()} or {$this->columnName} {$operator} {$this->range->forSql()}";
+
+            $this->assertEquals($sqlWithMacro->toSql(), $rawSql);
+        }
     }
 
     /** @test */
-    public function or_where_range_contains_macro_test(): void
+    public function query_builder_macros_do_not_throw_any_exceptions(): void
     {
-        $sqlWithMacro = Range::orWhereRangeContains($this->columnName, $this->range)
-            ->orWhereRangeContains($this->columnName, $this->range);
+        $macros = new QueryBuilderMacros();
+        $rangeColumns = [
+            ['timestamp_range', new TimestampRange(Carbon::now(), Carbon::now()->addDay())],
+            ['time_range', new TimeRange('15:30:30', '16:30:30')],
+            ['float_range', new FloatRange(1.5, 2.5)],
+            ['integer_range', new IntegerRange(10, 20)],
+            ['bigint_range', new IntegerRange(10, 20)],
+            ['date_range', new DateRange(Carbon::now(), Carbon::now()->addDay())],
+        ];
 
-        $rawSql = Range::orWhereRaw('? @> ?', [$this->columnName, $this->range])
-            ->orWhereRaw('? @> ?', [$this->columnName, $this->range]);
+        foreach ($macros->macrosParams as [$macroMethod, $_]) {
+            foreach ($rangeColumns as [$columnName, $rangeObject]) {
+                $query = "where$macroMethod";
 
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
+                $items = Range::$query($columnName, $rangeObject)->get();
+                $this->assertCount(0, $items);
 
-    /** @test */
-    public function where_range_is_contained_by_macro_test(): void
-    {
-        $sqlWithMacro = Range::whereRangeIsContainedBy($this->columnName, $this->range)
-            ->whereRangeIsContainedBy($this->columnName, $this->range);
+                $items = Range::$query($rangeObject, $columnName)->get();
+                $this->assertCount(0, $items);
 
-        $rawSql = Range::whereRaw('? <@ ?', [$this->columnName, $this->range])
-            ->whereRaw('? <@ ?', [$this->columnName, $this->range]);
+                $query = "orWhere$macroMethod";
 
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
+                $items = Range::$query($columnName, $rangeObject)->get();
+                $this->assertCount(0, $items);
 
-    /** @test */
-    public function or_where_range_is_contained_by_macro_test(): void
-    {
-        $sqlWithMacro = Range::orWhereRangeIsContainedBy($this->columnName, $this->range)
-            ->orWhereRangeIsContainedBy($this->columnName, $this->range);
-
-        $rawSql = Range::orWhereRaw('? <@ ?', [$this->columnName, $this->range])
-            ->orWhereRaw('? <@ ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function where_range_is_overlaps_by_macro_test(): void
-    {
-        $sqlWithMacro = Range::whereRangeOverlaps($this->columnName, $this->range)
-            ->whereRangeOverlaps($this->columnName, $this->range);
-
-        $rawSql = Range::whereRaw('? && ?', [$this->columnName, $this->range])
-            ->whereRaw('? && ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function or_where_range_overlaps_by_macro_test(): void
-    {
-        $sqlWithMacro = Range::orWhereRangeOverlaps($this->columnName, $this->range)
-            ->orWhereRangeOverlaps($this->columnName, $this->range);
-
-        $rawSql = Range::orWhereRaw('? && ?', [$this->columnName, $this->range])
-            ->orWhereRaw('? && ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function where_range_is_strictly_left_of_by_macro_test(): void
-    {
-        $sqlWithMacro = Range::whereRangeStrictlyLeftOf($this->columnName, $this->range)
-            ->whereRangeStrictlyLeftOf($this->columnName, $this->range);
-
-        $rawSql = Range::whereRaw('? << ?', [$this->columnName, $this->range])
-            ->whereRaw('? << ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function or_where_range_strictly_left_of_by_macro_test(): void
-    {
-        $sqlWithMacro = Range::orWhereRangeStrictlyLeftOf($this->columnName, $this->range)
-            ->orWhereRangeStrictlyLeftOf($this->columnName, $this->range);
-
-        $rawSql = Range::orWhereRaw('? << ?', [$this->columnName, $this->range])
-            ->orWhereRaw('? << ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function where_range_is_strictly_right_of_by_macro_test(): void
-    {
-        $sqlWithMacro = Range::whereRangeStrictlyRightOf($this->columnName, $this->range)
-            ->whereRangeStrictlyRightOf($this->columnName, $this->range);
-
-        $rawSql = Range::whereRaw('? >> ?', [$this->columnName, $this->range])
-            ->whereRaw('? >> ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function or_where_range_strictly_right_of_by_macro_test(): void
-    {
-        $sqlWithMacro = Range::orWhereRangeStrictlyRightOf($this->columnName, $this->range)
-            ->orWhereRangeStrictlyRightOf($this->columnName, $this->range);
-
-        $rawSql = Range::orWhereRaw('? >> ?', [$this->columnName, $this->range])
-            ->orWhereRaw('? >> ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function where_range_does_not_extend_to_the_right_of_macro_test(): void
-    {
-        $sqlWithMacro = Range::whereRangeDoesNotExtendToTheRightOf($this->columnName, $this->range)
-            ->whereRangeDoesNotExtendToTheRightOf($this->columnName, $this->range);
-
-        $rawSql = Range::whereRaw('? &< ?', [$this->columnName, $this->range])
-            ->whereRaw('? &< ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function or_where_does_not_extend_to_the_right_of_macro_test(): void
-    {
-        $sqlWithMacro = Range::orWhereRangeDoesNotExtendToTheRightOf($this->columnName, $this->range)
-            ->orWhereRangeDoesNotExtendToTheRightOf($this->columnName, $this->range);
-
-        $rawSql = Range::orWhereRaw('? &< ?', [$this->columnName, $this->range])
-            ->orWhereRaw('? &< ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function where_range_does_not_extend_to_the_left_of_macro_test(): void
-    {
-        $sqlWithMacro = Range::whereRangeDoesNotExtendToTheLeftOf($this->columnName, $this->range)
-            ->whereRangeDoesNotExtendToTheLeftOf($this->columnName, $this->range);
-
-        $rawSql = Range::whereRaw('? &> ?', [$this->columnName, $this->range])
-            ->whereRaw('? &> ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function or_where_range_does_not_extend_to_the_left_of_macro_test(): void
-    {
-        $sqlWithMacro = Range::orWhereRangeDoesNotExtendToTheLeftOf($this->columnName, $this->range)
-            ->orWhereRangeDoesNotExtendToTheLeftOf($this->columnName, $this->range);
-
-        $rawSql = Range::orWhereRaw('? &> ?', [$this->columnName, $this->range])
-            ->orWhereRaw('? &> ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function where_range_adjacent_to_macro_test(): void
-    {
-        $sqlWithMacro = Range::whereRangeAdjacentTo($this->columnName, $this->range)
-            ->whereRangeAdjacentTo($this->columnName, $this->range);
-
-        $rawSql = Range::whereRaw('? -|- ?', [$this->columnName, $this->range])
-            ->whereRaw('? -|- ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
-    }
-
-    /** @test */
-    public function or_where_range_adjacent_to_macro_test(): void
-    {
-        $sqlWithMacro = Range::orWhereRangeAdjacentTo($this->columnName, $this->range)
-            ->orWhereRangeAdjacentTo($this->columnName, $this->range);
-
-        $rawSql = Range::orWhereRaw('? -|- ?', [$this->columnName, $this->range])
-            ->orWhereRaw('? -|- ?', [$this->columnName, $this->range]);
-
-        $this->assertEquals($sqlWithMacro->toSql(), $rawSql->toSql());
-        $this->assertEquals($sqlWithMacro->getBindings(), $rawSql->getBindings());
+                $items = Range::$query($rangeObject, $columnName)->get();
+                $this->assertCount(0, $items);
+            }
+        }
     }
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->range = new IntegerRange(10, 11);
+
+        $this->withoutMockingConsoleOutput();
+        include_once __DIR__.'/../database/migrations/0000_00_00_000000_create_ranges_test_table.php';
+
+        // run the up() method of that migration class
+        (new CreateRangesTestTable())->up();
     }
 }

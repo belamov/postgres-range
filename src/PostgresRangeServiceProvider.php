@@ -2,8 +2,9 @@
 
 namespace Belamov\PostgresRange;
 
+use Belamov\PostgresRange\Macros\BluePrintMacros;
+use Belamov\PostgresRange\Macros\QueryBuilderMacros;
 use Illuminate\Database\Connection;
-use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 
 class PostgresRangeServiceProvider extends ServiceProvider
@@ -32,14 +33,7 @@ class PostgresRangeServiceProvider extends ServiceProvider
             ], 'config');
         }
 
-        Collection::make(glob(__DIR__.'/Macros/*.php'))->mapWithKeys(
-            static function ($path) {
-                return [$path => pathinfo($path, PATHINFO_FILENAME)];
-            }
-        )->each(
-            static function ($macro, $path) {
-                require_once $path;
-            }
-        );
+        (new BluePrintMacros())->register();
+        (new QueryBuilderMacros())->register();
     }
 }

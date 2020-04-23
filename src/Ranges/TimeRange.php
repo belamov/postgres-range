@@ -14,6 +14,12 @@ class TimeRange extends Range
 {
     use StringifiesBoundariesFromDateTimeInterface;
 
+    public function forSql(): string
+    {
+        $timerangeTypeName = config('postgres-range.timerange_typename');
+        return "'$this'::$timerangeTypeName";
+    }
+
     /**
      * @param  string  $boundary
      * @return string
