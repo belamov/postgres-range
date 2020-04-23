@@ -17,6 +17,7 @@ class TimeRange extends Range
     public function forSql(): string
     {
         $timerangeTypeName = config('postgres-range.timerange_typename');
+
         return "'$this'::$timerangeTypeName";
     }
 
