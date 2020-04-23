@@ -24,7 +24,7 @@ class QueryBuilderMacros
         foreach ($this->macrosParams as [$operatorName, $operator]) {
             Builder::macro(
                 "where{$operatorName}",
-                fn($left, $right) => $this->whereRaw(
+                fn ($left, $right) => $this->whereRaw(
                     sprintf('%s %s %s',
                         $left instanceof Range ? $left->forSql() : $left,
                         $operator,
@@ -35,7 +35,7 @@ class QueryBuilderMacros
 
             Builder::macro(
                 "orWhere{$operatorName}",
-                fn($left, $right) => $this->orWhereRaw(
+                fn ($left, $right) => $this->orWhereRaw(
                     sprintf('%s %s %s',
                         $left instanceof Range ? $left->forSql() : $left,
                         $operator,

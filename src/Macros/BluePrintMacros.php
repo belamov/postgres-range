@@ -20,7 +20,7 @@ class BluePrintMacros
         foreach ($this->columnTypes as [$columnTypeForMacro, $columnTypeForPostgres]) {
             Blueprint::macro(
                 $columnTypeForMacro,
-                fn(string $columnName) => $this->addColumn($columnTypeForPostgres, $columnName)
+                fn (string $columnName) => $this->addColumn($columnTypeForPostgres, $columnName)
             );
         }
 
@@ -32,5 +32,3 @@ class BluePrintMacros
         });
     }
 }
-
-
