@@ -13,7 +13,7 @@ class QueryBuilderMacros
         ['RangeDoesNotExtendToTheRightOf', '&<'],
         ['RangeAdjacentTo', '-|-'],
         ['RangeIsContainedBy', '<@'],
-        ['RangeRangeOverlaps', '&&'],
+        ['RangeOverlaps', '&&'],
         ['RangeStrictlyLeftOf', '<<'],
         ['RangeStrictlyRightOf', '>>'],
 
