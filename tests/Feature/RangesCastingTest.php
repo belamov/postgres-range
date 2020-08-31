@@ -161,12 +161,12 @@ class RangesCastingTest extends TestCase
             ]
         );
 
-        $this->assertNull($modelWithMissingLowerBoundary->timestamp_range->from());
-        $this->assertNull($modelWithMissingLowerBoundary->time_range->from());
-        $this->assertNull($modelWithMissingLowerBoundary->float_range->from());
-        $this->assertNull($modelWithMissingLowerBoundary->integer_range->from());
-        $this->assertNull($modelWithMissingLowerBoundary->bigint_range->from());
-        $this->assertNull($modelWithMissingLowerBoundary->date_range->from());
+        $this->assertNull($modelWithMissingLowerBoundary->fresh()->timestamp_range->from());
+        $this->assertNull($modelWithMissingLowerBoundary->fresh()->time_range->from());
+        $this->assertNull($modelWithMissingLowerBoundary->fresh()->float_range->from());
+        $this->assertNull($modelWithMissingLowerBoundary->fresh()->integer_range->from());
+        $this->assertNull($modelWithMissingLowerBoundary->fresh()->bigint_range->from());
+        $this->assertNull($modelWithMissingLowerBoundary->fresh()->date_range->from());
 
         $modelWithMissingUpperBoundary = $this->createModel(
             [
@@ -179,12 +179,12 @@ class RangesCastingTest extends TestCase
             ]
         );
 
-        $this->assertNull($modelWithMissingUpperBoundary->timestamp_range->to());
-        $this->assertNull($modelWithMissingUpperBoundary->time_range->to());
-        $this->assertNull($modelWithMissingUpperBoundary->float_range->to());
-        $this->assertNull($modelWithMissingUpperBoundary->integer_range->to());
-        $this->assertNull($modelWithMissingUpperBoundary->bigint_range->to());
-        $this->assertNull($modelWithMissingUpperBoundary->date_range->to());
+        $this->assertNull($modelWithMissingUpperBoundary->fresh()->timestamp_range->to());
+        $this->assertNull($modelWithMissingUpperBoundary->fresh()->time_range->to());
+        $this->assertNull($modelWithMissingUpperBoundary->fresh()->float_range->to());
+        $this->assertNull($modelWithMissingUpperBoundary->fresh()->integer_range->to());
+        $this->assertNull($modelWithMissingUpperBoundary->fresh()->bigint_range->to());
+        $this->assertNull($modelWithMissingUpperBoundary->fresh()->date_range->to());
     }
 
     /**
