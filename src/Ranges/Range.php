@@ -15,6 +15,8 @@ abstract class Range
         $this->to = $to;
         $this->fromBound = $fromBound;
         $this->toBound = $toBound;
+
+        $this->checkForEmptyBoundaries();
     }
 
     /**
@@ -59,4 +61,14 @@ abstract class Range
      * @return string
      */
     abstract public function forSql(): string;
+
+    private function checkForEmptyBoundaries(): void
+    {
+        if ($this->to === '') {
+            $this->to = null;
+        }
+        if ($this->from === '') {
+            $this->from = null;
+        }
+    }
 }
