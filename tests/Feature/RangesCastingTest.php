@@ -156,7 +156,7 @@ class RangesCastingTest extends TestCase
             'float_range',
             'integer_range',
             'bigint_range',
-            'date_range'
+            'date_range',
         ];
 
         $modelWithMissingLowerBoundary = $this->createModel(
@@ -172,7 +172,7 @@ class RangesCastingTest extends TestCase
 
         $modelWithMissingLowerBoundary = $modelWithMissingLowerBoundary->fresh();
 
-        foreach ($rangeFields as $field ){
+        foreach ($rangeFields as $field) {
             $this->assertNull($modelWithMissingLowerBoundary->$field->from());
             $this->assertFalse($modelWithMissingLowerBoundary->$field->hasLowerBoundary());
             $this->assertTrue($modelWithMissingLowerBoundary->$field->hasUpperBoundary());
@@ -191,7 +191,7 @@ class RangesCastingTest extends TestCase
 
         $modelWithMissingUpperBoundary = $modelWithMissingUpperBoundary->fresh();
 
-        foreach ($rangeFields as $field ){
+        foreach ($rangeFields as $field) {
             $this->assertNull($modelWithMissingUpperBoundary->$field->to());
             $this->assertTrue($modelWithMissingUpperBoundary->$field->hasLowerBoundary());
             $this->assertFalse($modelWithMissingUpperBoundary->$field->hasUpperBoundary());
