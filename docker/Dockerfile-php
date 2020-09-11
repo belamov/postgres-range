@@ -5,8 +5,7 @@ RUN apt-get update -yqq \
     && docker-php-ext-install pdo pdo_pgsql zip
 
 RUN curl -fsSL https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer \
-    && composer global require phpunit/phpunit ^8.0 --no-progress --no-scripts --no-interaction
+    && mv composer.phar /usr/local/bin/composer
 
 RUN pecl install xdebug \
     &&  docker-php-ext-enable xdebug
