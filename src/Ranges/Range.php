@@ -49,6 +49,16 @@ abstract class Range
         return $this->transformBoundary($this->to);
     }
 
+    public function hasLowerBoundary(): bool
+    {
+        return $this->from !== null;
+    }
+
+    public function hasUpperBoundary(): bool
+    {
+        return $this->to !== null;
+    }
+
     /**
      * @return string
      */

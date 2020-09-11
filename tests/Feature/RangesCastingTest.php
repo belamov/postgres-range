@@ -150,6 +150,15 @@ class RangesCastingTest extends TestCase
     /** @test */
     public function it_casts_empty_boundaries_to_null(): void
     {
+        $rangeFields = [
+            'timestamp_range',
+            'time_range',
+            'float_range',
+            'integer_range',
+            'bigint_range',
+            'date_range'
+        ];
+
         $modelWithMissingLowerBoundary = $this->createModel(
             [
                 'timestamp_range' => new TimestampRange(null, '2010-01-01 14:30:30'),
@@ -161,12 +170,13 @@ class RangesCastingTest extends TestCase
             ]
         );
 
-        $this->assertNull($modelWithMissingLowerBoundary->fresh()->timestamp_range->from());
-        $this->assertNull($modelWithMissingLowerBoundary->fresh()->time_range->from());
-        $this->assertNull($modelWithMissingLowerBoundary->fresh()->float_range->from());
-        $this->assertNull($modelWithMissingLowerBoundary->fresh()->integer_range->from());
-        $this->assertNull($modelWithMissingLowerBoundary->fresh()->bigint_range->from());
-        $this->assertNull($modelWithMissingLowerBoundary->fresh()->date_range->from());
+        $modelWithMissingLowerBoundary = $modelWithMissingLowerBoundary->fresh();
+
+        foreach ($rangeFields as $field ){
+            $this->assertNull($modelWithMissingLowerBoundary->$field->from());
+            $this->assertFalse($modelWithMissingLowerBoundary->$field->hasLowerBoundary());
+            $this->assertTrue($modelWithMissingLowerBoundary->$field->hasUpperBoundary());
+        }
 
         $modelWithMissingUpperBoundary = $this->createModel(
             [
@@ -179,12 +189,13 @@ class RangesCastingTest extends TestCase
             ]
         );
 
-        $this->assertNull($modelWithMissingUpperBoundary->fresh()->timestamp_range->to());
-        $this->assertNull($modelWithMissingUpperBoundary->fresh()->time_range->to());
-        $this->assertNull($modelWithMissingUpperBoundary->fresh()->float_range->to());
-        $this->assertNull($modelWithMissingUpperBoundary->fresh()->integer_range->to());
-        $this->assertNull($modelWithMissingUpperBoundary->fresh()->bigint_range->to());
-        $this->assertNull($modelWithMissingUpperBoundary->fresh()->date_range->to());
+        $modelWithMissingUpperBoundary = $modelWithMissingUpperBoundary->fresh();
+
+        foreach ($rangeFields as $field ){
+            $this->assertNull($modelWithMissingUpperBoundary->$field->to());
+            $this->assertTrue($modelWithMissingUpperBoundary->$field->hasLowerBoundary());
+            $this->assertFalse($modelWithMissingUpperBoundary->$field->hasUpperBoundary());
+        }
     }
 
     /**
