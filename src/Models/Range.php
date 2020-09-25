@@ -7,17 +7,20 @@ use Belamov\PostgresRange\Casts\FloatRangeCast;
 use Belamov\PostgresRange\Casts\IntegerRangeCast;
 use Belamov\PostgresRange\Casts\TimeRangeCast;
 use Belamov\PostgresRange\Casts\TimestampRangeCast;
+use Belamov\PostgresRange\Casts\TimestampTzRangeCast;
 use Belamov\PostgresRange\Ranges\DateRange;
 use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
 use Belamov\PostgresRange\Ranges\TimeRange;
 use Belamov\PostgresRange\Ranges\TimestampRange;
+use Belamov\PostgresRange\Ranges\TimestampTzRange;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Range.
  *
  * @property TimestampRange $timestamp_range
+ * @property TimestampTzRange $timestamptz_range
  * @property TimeRange $time_range
  * @property FloatRange $float_range
  * @property IntegerRange $integer_range
@@ -30,6 +33,7 @@ class Range extends Model
     protected $guarded = [];
     protected $casts = [
         'timestamp_range' => TimestampRangeCast::class,
+        'timestamptz_range' => TimestampTzRangeCast::class,
         'time_range' => TimeRangeCast::class,
         'float_range' => FloatRangeCast::class,
         'integer_range' => IntegerRangeCast::class,

@@ -9,6 +9,7 @@ class BluePrintMacros
     private array $columnTypes = [
         ['dateRange', 'daterange'],
         ['timestampRange', 'tsrange'],
+        ['timestampTzRange', 'tstzrange'],
         ['floatRange', 'numrange'],
         ['integerRange', 'int4range'],
         ['bigIntegerRange', 'int8range'],

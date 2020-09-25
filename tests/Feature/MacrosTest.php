@@ -9,6 +9,7 @@ use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
 use Belamov\PostgresRange\Ranges\TimeRange;
 use Belamov\PostgresRange\Ranges\TimestampRange;
+use Belamov\PostgresRange\Ranges\TimestampTzRange;
 use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\Carbon;
 use CreateRangesTestTable;
@@ -45,6 +46,7 @@ class MacrosTest extends TestCase
         $macros = new QueryBuilderMacros();
         $rangeColumns = [
             ['timestamp_range', new TimestampRange(Carbon::now(), Carbon::now()->addDay())],
+            ['timestamptz_range', new TimestampTzRange(Carbon::now(), Carbon::now()->addDay())],
             ['time_range', new TimeRange('15:30:30', '16:30:30')],
             ['float_range', new FloatRange(1.5, 2.5)],
             ['integer_range', new IntegerRange(10, 20)],

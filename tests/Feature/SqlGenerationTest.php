@@ -23,6 +23,7 @@ class SqlGenerationTest extends TestCase
         $model = $model->fresh();
 
         $this->assertNull($model->timestamp_range_nullable);
+        $this->assertNull($model->timestamptz_range_nullable);
         $this->assertNull($model->time_range_nullable);
         $this->assertNull($model->float_range_nullable);
         $this->assertNull($model->integer_range_nullable);
@@ -40,6 +41,10 @@ class SqlGenerationTest extends TestCase
         $this->assertEquals(
             '["2010-01-01 14:30:30","2010-01-02 14:30:30")',
             $model->getRawOriginal('timestamp_range_with_default')
+        );
+        $this->assertEquals(
+            '["2010-01-01 16:30:30+00","2010-01-02 16:30:30+00")',
+            $model->getRawOriginal('timestamptz_range_with_default')
         );
         $this->assertEquals('[14:30:30,15:30:30)', $model->getRawOriginal('time_range_with_default'));
         $this->assertEquals('[1.5,2.5)', $model->getRawOriginal('float_range_with_default'));
