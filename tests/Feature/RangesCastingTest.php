@@ -1,6 +1,6 @@
 <?php
 
-namespace Belamov\PostgresRange\Tests\Unit;
+namespace Belamov\PostgresRange\Tests\Feature;
 
 use Belamov\PostgresRange\Ranges\DateRange;
 use Belamov\PostgresRange\Ranges\FloatRange;
@@ -35,6 +35,25 @@ class RangesCastingTest extends TestCase
         $this->assertInstanceOf(TimestampRange::class, $model->timestamp_range);
         $this->assertEquals($from, $model->timestamp_range->from()->toDateTimeString());
         $this->assertEquals($to, $model->timestamp_range->to()->toDateTimeString());
+    }
+
+    /** @test */
+    public function it_casts_timestamptz_range_column(): void
+    {
+        $from = '2010-01-01 14:30:30-2:00';
+        $to = '2010-01-01 15:30:30-2:00';
+        $timestampRange = new TimestampRange($from, $to, '[', ']');
+        $model = $this->createModel(
+            [
+                'timestamptz_range' => $timestampRange,
+            ]
+        );
+
+        $model = $model->fresh();
+        $this->assertDatabaseHas('ranges', ['id' => $model->id]);
+        $this->assertInstanceOf(TimestampRange::class, $model->timestamptz_range);
+        $this->assertEquals(CarbonImmutable::parse($from)->timezone('UTC')->toDateTimeString(), $model->timestamptz_range->from()->toDateTimeString());
+        $this->assertEquals(CarbonImmutable::parse($to)->timezone('UTC')->toDateTimeString(), $model->timestamptz_range->to()->toDateTimeString());
     }
 
     /** @test */

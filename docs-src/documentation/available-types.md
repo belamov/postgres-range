@@ -170,6 +170,104 @@ $model->timestamp_range->from(); // CarbonImmutable object
 $model->timestamp_range->to(); // CarbonImmutable object
 ```
 
+## tstzrange
+
+Let's imagine we want to use `tstzrange` column in our Laravel application.
+
+### Migrations
+
+First, let's add it in our migration files.
+
+```php
+public function up(): void
+    {
+        Schema::create(
+            'table',
+            static function (Blueprint $table) {
+                $table->id();
+                // ...
+                $table->timestampTzRange('timestamptz_range');
+                // you can add any modifications
+                // $table->timestampTzRange('timestamptz_range')->nullable();
+                // $table->timestampTzRange('timestamptz_range')->default('[2010-01-01 14:30:30+2:00,2010-01-02 14:30:30+2:00)');
+            }
+        );
+    }
+``` 
+
+### Model property casting
+
+Next, we should define cast for this column in our model class.
+
+```php
+use Belamov\PostgresRange\Casts\TimestampTzRangeCast;
+
+class SomeModel extends Model
+{
+    // ...
+    protected $casts = [
+        'timestamptz_range' => TimestampTzRangeCast::class,
+    ];
+    // ...
+}
+```
+
+Now, whenever we access `timestamptz_range` attribute in our model, it will return `Belamov\PostgresRange\Ranges\TimestampTzRange` instance
+
+::: warning
+For timestamp with time zone, the internally stored value is always in 
+UTC (Universal Coordinated Time, traditionally known as Greenwich Mean Time, GMT). 
+An input value that has an explicit time zone specified is converted to UTC using the appropriate 
+offset for that time zone. If no time zone is stated in the input string, then 
+it is assumed to be in the time zone indicated by the system's TimeZone parameter, 
+and is converted to UTC using the offset for the timezone zone.
+
+When a timestamp with time zone value is output, it is always converted from UTC 
+to the current timezone zone, and displayed as local time in that zone.
+
+You can read more about this at [Documentation](https://www.postgresql.org/docs/9.3/datatype-datetime.html#AEN5963)
+
+Also this article will help you to figure out differences between timestamps with and without timestamps [Understanding PostgreSQL Timestamp Data Types](https://www.postgresqltutorial.com/postgresql-timestamp/)  
+:::
+
+### TimestampTzRange object
+
+Initialization:
+
+```php
+use Belamov\PostgresRange\Ranges\TimestampTzRange;
+
+$range = new TimestampTzRange('2010-01-01 14:30:30+2:00', '2010-01-02 14:30:30+2:00', '[', ')');
+```
+
+::: tip
+Note that you can initialize TimestampTzRange object either with strings, 
+or with any objects that implement DateTime interface
+for example with Carbon objects
+```php
+$range = new TimestampTzRange(Carbon::parse('2010-01-01 14:30:30-2:00'), Carbon::now(), '[', ')')
+```
+:::
+
+API:
+
+```php
+$range->from(); // CarbonImmutable object
+$range->to(); // CarbonImmutable object
+$range->hasUpperBoundary(); // bool
+$range->hasLowerBoundary(); // bool
+(string) $range; // [2010-01-01 14:30:30,2010-01-02 14:30:30)
+$range->forSql(); // '[2010-01-01 14:30:30,2010-01-02 14:30:30)'::tstzrange
+```
+
+Model updating or creating:
+```php
+$model->update(['timestamptz_range' => $range]);
+$model->timestamptz_range; // TimestampRange object
+$model->timestamptz_range->from(); // CarbonImmutable object
+$model->timestamptz_range->to(); // CarbonImmutable object
+```
+
 ## numrange
 
 Let's imagine we want to use `numrange` column in our Laravel application.

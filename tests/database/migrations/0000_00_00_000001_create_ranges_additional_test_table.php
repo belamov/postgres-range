@@ -26,6 +26,9 @@ class CreateRangesAdditionalTestTable extends Migration
                 $table->timestampRange('timestamp_range_nullable')->nullable();
                 $table->timestampRange('timestamp_range_with_default')->default('[2010-01-01 14:30:30,2010-01-02 14:30:30)');
 
+                $table->timestampTzRange('timestamptz_range_nullable')->nullable();
+                $table->timestampTzRange('timestamptz_range_with_default')->default('[2010-01-01 14:30:30-2:00,2010-01-02 14:30:30-2:00)');
+
                 $table->floatRange('float_range_nullable')->nullable();
                 $table->floatRange('float_range_with_default')->default('[1.5,2.5)');
 

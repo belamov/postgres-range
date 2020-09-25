@@ -21,6 +21,7 @@ class CreateRangesTestTable extends Migration
             static function (Blueprint $table) {
                 $table->id();
                 $table->timestampRange('timestamp_range')->nullable();
+                $table->timestampTzRange('timestamptz_range')->nullable();
                 $table->timeRange('time_range')->nullable();
                 $table->floatRange('float_range')->nullable();
                 $table->integerRange('integer_range')->nullable();

@@ -28,6 +28,14 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
     /**
      * @return string
      */
+    public function typeTstzrange(): string
+    {
+        return 'tstzrange';
+    }
+
+    /**
+     * @return string
+     */
     public function typeNumrange(): string
     {
         return 'numrange';
