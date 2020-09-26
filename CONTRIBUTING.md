@@ -10,9 +10,9 @@ You can use docker for running tests and generating documentation.
 
 There are some scripts that will help you out:
 
-- `scripts/tests.sh` - running tests with phpunit
-- `scripts/docs-dev.sh` - hosting docs for development on your http://localhost:8080 
-- `scripts/docs-build.sh` - compiles docs to html. be sure to run this command if you updated documentation
+- `cd scripts && ./tests.sh && cd -` - running tests with phpunit
+- `cd scripts && ./docs-dev.sh && cd -` - hosting docs for development on your http://localhost:8080 
+- `cd scripts && ./docs-build.sh && cd -` - compiles docs to html. be sure to run this command if you updated documentation
 
 ## Etiquette
 

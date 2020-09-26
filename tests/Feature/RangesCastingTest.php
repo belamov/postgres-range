@@ -50,6 +50,7 @@ class RangesCastingTest extends TestCase
         );
 
         $model = $model->fresh();
+
         $this->assertDatabaseHas('ranges', ['id' => $model->id]);
         $this->assertInstanceOf(TimestampRange::class, $model->timestamptz_range);
         $this->assertEquals(CarbonImmutable::parse($from)->timezone('UTC')->toDateTimeString(), $model->timestamptz_range->from()->toDateTimeString());

@@ -245,7 +245,7 @@ Note that you can initialize TimestampTzRange object either with strings,
 or with any objects that implement DateTime interface
 for example with Carbon objects
 ```php
-$range = new TimestampTzRange(Carbon::parse('2010-01-01 14:30:30-2:00'), Carbon::now(), '[', ')')
+$range = new TimestampTzRange(Carbon::parse('2010-01-01 14:30:30'), Carbon::now(), '[', ')')
 ```
 :::
 
@@ -256,14 +256,14 @@ $range->from(); // CarbonImmutable object
 $range->to(); // CarbonImmutable object
 $range->hasUpperBoundary(); // bool
 $range->hasLowerBoundary(); // bool
-(string) $range; // [2010-01-01 14:30:30,2010-01-02 14:30:30)
-$range->forSql(); // '[2010-01-01 14:30:30,2010-01-02 14:30:30)'::tstzrange
+(string) $range; // [2010-01-01 14:30:30+00,2010-01-02 14:30:30+00)
+$range->forSql(); // '[2010-01-01 14:30:30+00,2010-01-02 14:30:30+00)'::tstzrange
 ```
 
 Model updating or creating:
 ```php
 $model->update(['timestamptz_range' => $range]);
-$model->timestamptz_range; // TimestampRange object
+$model->timestamptz_range; // TimestampTzRange object
 $model->timestamptz_range->from(); // CarbonImmutable object
 $model->timestamptz_range->to(); // CarbonImmutable object
 ```
