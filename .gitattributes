@@ -4,10 +4,16 @@
 # Ignore all test and documentation with "export-ignore".
 /.gitattributes     export-ignore
 /.gitignore         export-ignore
-/phpunit.xml.dist   export-ignore
+/phpunit.xml        export-ignore
 /.scrutinizer.yml   export-ignore
+/.styleci.yml       export-ignore
 /tests              export-ignore
 /.editorconfig      export-ignore
+/docs               export-ignore
+/docs-src           export-ignore
+/.github            export-ignore
+/docker             export-ignore
+/scripts            export-ignore
 /docs               -diff
 /docs               linguist-vendored
 /docs-src           linguist-vendored
