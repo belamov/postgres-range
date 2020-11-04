@@ -1,5 +1,4 @@
-# Laravel package for PostgreSQL range types support
-
+![postgres-range](https://banners.beyondco.de/postgres-range.png?theme=dark&packageName=belamov%2Fpostgres-range&pattern=architect&style=style_1&description=Laravel+package+for+PostgreSQL+range+types+support&md=1&fontSize=150px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/belamov/postgres-range.svg?style=flat-square)](https://packagist.org/packages/belamov/postgres-range)
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/belamov/postgres-range)
 [![Laravel](https://img.shields.io/badge/laravel-7%20%7C%208-green)](https://laravel.com/)
