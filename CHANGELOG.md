@@ -4,6 +4,12 @@ All notable changes to `postrges-range` will be documented in this file
 
 ## [Unreleased]
 
+## [1.1.1] - 2020-12-07
+
+### Added
+
+- supprot for php 8
+
 ## [1.1.0] - 2020-09-26
 
 ### Added
@@ -48,6 +54,7 @@ All notable changes to `postrges-range` will be documented in this file
 - support of range types for laravel
 
 [unreleased]: https://github.com/belamov/postgres-range/compare/1.1.0...HEAD
+[1.1.1]: https://github.com/belamov/postgres-range/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/belamov/postgres-range/compare/1.0.4...1.1.0
 [1.0.4]: https://github.com/belamov/postgres-range/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/belamov/postgres-range/compare/1.0.2...1.0.3
