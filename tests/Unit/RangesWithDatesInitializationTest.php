@@ -12,7 +12,9 @@ use Exception;
 
 class RangesWithDatesInitializationTest extends TestCase
 {
-    /** @test
+    /**
+     * @test
+     *
      * @throws Exception
      */
     public function date_range_can_be_initialized_with_strings_or_date_object(): void
@@ -40,7 +42,9 @@ class RangesWithDatesInitializationTest extends TestCase
         $this->assertEquals($rangeInitiatedWithDateObject->to(), $toCarbon);
     }
 
-    /** @test
+    /**
+     * @test
+     *
      * @throws Exception
      */
     public function timestamp_range_can_be_initialized_with_strings_or_date_object(): void
@@ -68,7 +72,9 @@ class RangesWithDatesInitializationTest extends TestCase
         $this->assertEquals($rangeInitiatedWithDateObject->to(), $toCarbon);
     }
 
-    /** @test
+    /**
+     * @test
+     *
      * @throws Exception
      */
     public function time_range_can_be_initialized_with_strings_or_date_object(): void
