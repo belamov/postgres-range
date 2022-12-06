@@ -50,18 +50,4 @@ abstract class CanonicalRange extends Range
             $this->toBound = ')';
         }
     }
-
-    public function fromBound(): string
-    {
-        $this->canonicalizeLowerBoundary();
-
-        return parent::fromBound();
-    }
-
-    public function toBound(): string
-    {
-        $this->canonicalizeUpperBoundary();
-
-        return parent::toBound();
-    }
 }
