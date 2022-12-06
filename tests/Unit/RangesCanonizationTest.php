@@ -43,7 +43,7 @@ class RangesCanonizationTest extends TestCase
         $range = new IntegerRange(null, 20, '(', ')');
         $this->assertEquals(null, $range->from());
         $this->assertEquals(20, $range->to());
-        $this->assertEquals('[', $range->fromBound());
+        $this->assertEquals('(', $range->fromBound());
         $this->assertEquals(')', $range->toBound());
         $this->assertEquals('[,20)', (string) $range);
 
@@ -51,7 +51,7 @@ class RangesCanonizationTest extends TestCase
         $this->assertEquals(10, $range->from());
         $this->assertEquals(null, $range->to());
         $this->assertEquals('[', $range->fromBound());
-        $this->assertEquals(')', $range->toBound());
+        $this->assertEquals(']', $range->toBound());
         $this->assertEquals('[10,)', (string) $range);
     }
 
