@@ -93,6 +93,8 @@ class RangesCastingTest extends TestCase
 
         $this->assertDatabaseHas('ranges', ['id' => $model->id]);
         $this->assertInstanceOf(DateRange::class, $model->date_range);
+        $this->assertEquals('[', $model->date_range->fromBound());
+        $this->assertEquals(')', $model->date_range->toBound());
         $this->assertEquals($from, $model->date_range->from());
         $this->assertEquals($to, $model->date_range->to());
     }
@@ -113,6 +115,8 @@ class RangesCastingTest extends TestCase
 
         $this->assertDatabaseHas('ranges', ['id' => $model->id]);
         $this->assertInstanceOf(FloatRange::class, $model->float_range);
+        $this->assertEquals('[', $model->float_range->fromBound());
+        $this->assertEquals(']', $model->float_range->toBound());
         $this->assertEquals($from, $model->float_range->from());
         $this->assertEquals($to, $model->float_range->to());
     }
@@ -135,10 +139,14 @@ class RangesCastingTest extends TestCase
         $this->assertDatabaseHas('ranges', ['id' => $model->id]);
 
         $this->assertInstanceOf(IntegerRange::class, $model->integer_range);
+        $this->assertEquals('[', $model->integer_range->fromBound());
+        $this->assertEquals(')', $model->integer_range->toBound());
         $this->assertEquals($from, $model->integer_range->from());
         $this->assertEquals($to, $model->integer_range->to());
 
         $this->assertInstanceOf(IntegerRange::class, $model->bigint_range);
+        $this->assertEquals('[', $model->bigint_range->fromBound());
+        $this->assertEquals(')', $model->bigint_range->toBound());
         $this->assertEquals($from, $model->bigint_range->from());
         $this->assertEquals($to, $model->bigint_range->to());
     }

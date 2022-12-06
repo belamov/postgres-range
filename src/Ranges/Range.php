@@ -81,4 +81,14 @@ abstract class Range
             $this->from = null;
         }
     }
+
+    public function fromBound(): string
+    {
+        return $this->fromBound;
+    }
+
+    public function toBound(): string
+    {
+        return $this->toBound;
+    }
 }
