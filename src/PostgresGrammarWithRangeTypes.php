@@ -101,7 +101,7 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
      */
     public function compileExcludeRangeOverlapping(Blueprint $blueprint, Fluent $command): ?string
     {
-        if (!$command->range_column){
+        if (! $command->range_column) {
             return null;
         }
 
@@ -123,7 +123,7 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
 
     private function getAdditionalColumnsForExclude(?array $additionalColumns = []): string
     {
-        if (!is_array($additionalColumns)){
+        if (! is_array($additionalColumns)) {
             return '';
         }
 
