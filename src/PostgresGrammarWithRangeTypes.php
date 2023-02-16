@@ -99,8 +99,12 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
      * @param  Fluent  $command
      * @return string
      */
-    public function compileExcludeRangeOverlapping(Blueprint $blueprint, Fluent $command): string
+    public function compileExcludeRangeOverlapping(Blueprint $blueprint, Fluent $command): ?string
     {
+        if (!$command->range_column){
+            return null;
+        }
+
         if (! empty($command->additionalColumns)) {
             $this->addBtreeGistExtension();
         }
@@ -108,7 +112,7 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
         return sprintf('alter table %s add exclude using gist (%s %s with &&)',
             $this->wrapTable($blueprint),
             $this->getAdditionalColumnsForExclude($command->additionalColumns),
-            $this->wrap($command->column)
+            $this->wrap($command->range_column)
         );
     }
 
@@ -117,16 +121,16 @@ class PostgresGrammarWithRangeTypes extends PostgresGrammar
         DB::statement('CREATE EXTENSION IF NOT EXISTS btree_gist;');
     }
 
-    /**
-     * @param  array|null  $additionalColumns
-     * @return string
-     */
-    private function getAdditionalColumnsForExclude(?array $additionalColumns): string
+    private function getAdditionalColumnsForExclude(?array $additionalColumns = []): string
     {
+        if (!is_array($additionalColumns)){
+            return '';
+        }
+
         $columns = '';
 
         foreach ($additionalColumns as $additionalColumn) {
-            $columns .= "{$additionalColumn} WITH =,";
+            $columns .= "$additionalColumn WITH =,";
         }
 
         return $columns;

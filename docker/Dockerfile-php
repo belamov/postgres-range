@@ -1,4 +1,4 @@
-FROM php:7-cli
+FROM php:8-cli
 
 RUN apt-get update -yqq \
     && apt-get install git zlib1g-dev libpq-dev libzip-dev -y \
@@ -9,3 +9,5 @@ RUN curl -fsSL https://getcomposer.org/installer | php \
 
 RUN pecl install xdebug \
     &&  docker-php-ext-enable xdebug
+
+RUN echo "xdebug.mode=coverage,debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini

@@ -27,7 +27,7 @@ class BluePrintMacros
 
         Blueprint::macro('excludeRangeOverlapping', function ($columnName, ...$additionalColumns) {
             return $this->addCommand('excludeRangeOverlapping', [
-                'column' => $columnName,
+                'range_column' => $columnName,
                 'additionalColumns' => $additionalColumns,
             ]);
         });
