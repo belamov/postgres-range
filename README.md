@@ -2,7 +2,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/belamov/postgres-range.svg?style=flat-square)](https://packagist.org/packages/belamov/postgres-range)
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/belamov/postgres-range)
 [![Laravel](https://img.shields.io/badge/laravel-7%20%7C%208%20%7C%209%20%7C%2010-green)](https://laravel.com/)
-![tests](https://github.com/belamov/postgres-range/workflows/tests/badge.svg?branch=master)
+[![tests](https://github.com/belamov/postgres-range/actions/workflows/main.yml/badge.svg)](https://github.com/belamov/postgres-range/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/belamov/postgres-range/branch/master/graph/badge.svg)](https://codecov.io/gh/belamov/postgres-range)
 [![StyleCI](https://github.styleci.io/repos/253326230/shield?branch=master)](https://github.styleci.io/repos/253326230)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/belamov/postgres-range/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/belamov/postgres-range/?branch=master)
