@@ -1,7 +1,7 @@
 ![postgres-range](https://banners.beyondco.de/postgres-range.png?theme=dark&packageManager=composer+require&packageName=belamov%2Fpostgres-range&pattern=architect&style=style_1&description=Laravel+package+for+PostgreSQL+range+types+support&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/belamov/postgres-range.svg?style=flat-square)](https://packagist.org/packages/belamov/postgres-range)
 ![PHP from Packagist](https://img.shields.io/packagist/php-v/belamov/postgres-range)
-[![Laravel](https://img.shields.io/badge/laravel-7%20%7C%208%20%7C%209-green)](https://laravel.com/)
+[![Laravel](https://img.shields.io/badge/laravel-7%20%7C%208%20%7C%209%20%7C%2010-green)](https://laravel.com/)
 ![tests](https://github.com/belamov/postgres-range/workflows/tests/badge.svg?branch=master)
 [![codecov](https://codecov.io/gh/belamov/postgres-range/branch/master/graph/badge.svg)](https://codecov.io/gh/belamov/postgres-range)
 [![StyleCI](https://github.styleci.io/repos/253326230/shield?branch=master)](https://github.styleci.io/repos/253326230)
