@@ -7,7 +7,7 @@ use Belamov\PostgresRange\Ranges\DateRange;
 class DateRangeCast extends RangeCast
 {
     /**
-     * @param $matches
+     * @param  $matches
      * @return DateRange
      */
     public function getRangeInstance(array $matches): DateRange

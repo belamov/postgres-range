@@ -54,7 +54,7 @@ abstract class RangeCast implements CastsAttributes
     }
 
     /**
-     * @param $value
+     * @param  $value
      * @return array
      */
     protected function parseStringRange($value): array

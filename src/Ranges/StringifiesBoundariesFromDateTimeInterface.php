@@ -21,7 +21,7 @@ trait StringifiesBoundariesFromDateTimeInterface
     }
 
     /**
-     * @param $boundary
+     * @param  $boundary
      * @return string|null
      */
     protected function stringifyBoundary($boundary): ?string

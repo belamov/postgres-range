@@ -7,7 +7,7 @@ use Belamov\PostgresRange\Ranges\FloatRange;
 class FloatRangeCast extends RangeCast
 {
     /**
-     * @param $matches
+     * @param  $matches
      * @return FloatRange
      */
     public function getRangeInstance(array $matches): FloatRange
