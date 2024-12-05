@@ -9,7 +9,7 @@ namespace Belamov\PostgresRange\Ranges;
  */
 abstract class CanonicalRange extends Range
 {
-    public function __construct(string $from = null, string $to = null, $fromBound = '[', $toBound = ')')
+    public function __construct(?string $from = null, ?string $to = null, string $fromBound = '[', string $toBound = ')')
     {
         parent::__construct($from, $to, $fromBound, $toBound);
         $this->canonicalizeBoundaries();

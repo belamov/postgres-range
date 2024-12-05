@@ -9,7 +9,7 @@ abstract class Range
     protected ?string $from;
     protected ?string $to;
 
-    public function __construct(string $from = null, string $to = null, $fromBound = '[', $toBound = ')')
+    public function __construct(?string $from = null, ?string $to = null, string $fromBound = '[', string $toBound = ')')
     {
         $this->from = $from;
         $this->to = $to;

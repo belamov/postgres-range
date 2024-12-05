@@ -8,13 +8,13 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/belamov/postgres-range/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/belamov/postgres-range/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/belamov/postgres-range.svg?style=flat-square)](https://packagist.org/packages/belamov/postgres-range)
 
-This package provides support of PostgreSQL's range types for Laravel 7+.
+This package provides support for PostgreSQL's range types for Laravel 7+.
 
 Please check the [documentation](https://belamov.github.io/postgres-range)
 
 ### Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+Please see [CHANGELOG](CHANGELOG.md) for more information about what has changed recently.
 
 ## Contributing
 

@@ -4,11 +4,47 @@ All notable changes to `postrges-range` will be documented in this file
 
 ## [Unreleased]
 
+## [1.2.3] - 2024-03-22
+
+### Added
+
+- Added support for PHP 8.4: [Implicitly nullable parameter declarations deprecated](https://php.watch/versions/8.4/implicitly-marking-parameter-type-nullable-deprecated) [@isalcedo](https://github.com/isalcedo)
+
+## [1.2.2] - 2024-03-22
+
+### Added
+
+- Update laravel to v11 and other composer dependencies by [@Arthur-Sk](https://github.com/Arthur-Sk)
+
+## [1.2.1] - 2023-02-16
+
+### Added
+
+- added support for laravel 10
+
+## [1.2.0] - 2022-12-06
+
+### Added
+
+- added getters for boundaries by [@lunain84](https://github.com/lunain84)
+
+## [1.1.3] - 2022-02-08
+
+### Added
+
+- support for laravel 9
+
+## [1.1.2] - 2021-11-07
+
+### Added
+
+- updated github workflow strategy
+
 ## [1.1.1] - 2020-12-07
 
 ### Added
 
-- supprot for php 8
+- support for php 8
 
 ## [1.1.0] - 2020-09-26
 
