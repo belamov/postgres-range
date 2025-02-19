@@ -1,57 +1,57 @@
 {
-  "name": "belamov/postgres-range",
-  "description": "Postgres range types support for laravel",
-  "keywords": [
-    "daterange",
-    "tsrange",
-    "numrange",
-    "int4range",
-    "int8range",
-    "timerange",
-    "postgres-range",
-    "laravel",
-    "postgres",
-    "package"
-  ],
-  "homepage": "https://github.com/belamov/postgres-range",
-  "license": "MIT",
-  "type": "library",
-  "authors": [
-    {
-      "name": "belamov",
-      "email": "business@belamov.com",
-      "role": "Developer"
-    }
-  ],
-  "require": {
-    "php": "^8.0|^7.4",
-    "illuminate/support": "^7.0|^8.0|^9.0|^10.0|^11.0",
-    "nesbot/carbon": "^2.16|^3.0"
-  },
-  "require-dev": {
-    "orchestra/testbench": "^5.0|^6.0|^7.0|^8.0|^9.0",
-    "phpunit/phpunit": "^9.0|^10.0|^11.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Belamov\\PostgresRange\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Belamov\\PostgresRange\\Tests\\": "tests"
-    }
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Belamov\\PostgresRange\\PostgresRangeServiceProvider"
-      ]
-    }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+    "name": "belamov/postgres-range",
+    "description": "Postgres range types support for laravel",
+    "keywords": [
+        "daterange",
+        "tsrange",
+        "numrange",
+        "int4range",
+        "int8range",
+        "timerange",
+        "postgres-range",
+        "laravel",
+        "postgres",
+        "package"
+    ],
+    "homepage": "https://github.com/belamov/postgres-range",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "belamov",
+            "email": "business@belamov.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0|^7.4",
+        "illuminate/support": "^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
+        "nesbot/carbon": "^2.16|^3.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^9.0|^10.0|^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Belamov\\PostgresRange\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Belamov\\PostgresRange\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Belamov\\PostgresRange\\PostgresRangeServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
