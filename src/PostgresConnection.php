@@ -12,6 +12,6 @@ class PostgresConnection extends LaravelPostgresConnection
      */
     protected function getDefaultSchemaGrammar(): Grammar
     {
-        return $this->withTablePrefix(new PostgresGrammarWithRangeTypes());
+        return new PostgresGrammarWithRangeTypes($this);
     }
 }
