@@ -38,6 +38,28 @@ class RangesCastingTest extends TestCase
     }
 
     /** @test */
+    public function it_does_not_detect_changes_when_updating_with_same_timestamp_range(): void
+    {
+        $from = '2010-01-01 14:30:30';
+        $to = '2010-01-01 15:30:30';
+        $timestampRange = new TimestampRange($from, $to, '[', ']');
+        $model = $this->createModel(
+            [
+                'timestamp_range' => $timestampRange,
+            ]
+        );
+
+        $model = $model->fresh();
+        $model->update(
+            [
+                'timestamp_range' => $timestampRange,
+            ]
+        );
+
+        $this->assertEmpty($model->getChanges());
+    }
+
+    /** @test */
     public function it_casts_timestamptz_range_column(): void
     {
         $from = '2010-01-01 14:30:30-2:00';
