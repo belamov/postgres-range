@@ -7,6 +7,7 @@ use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
 use Belamov\PostgresRange\Ranges\TimeRange;
 use Belamov\PostgresRange\Ranges\TimestampRange;
+use Belamov\PostgresRange\Ranges\TimestampTzRange;
 use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
 use CreateRangesAdditionalTestTable;
@@ -35,6 +36,28 @@ class RangesCastingTest extends TestCase
         $this->assertInstanceOf(TimestampRange::class, $model->timestamp_range);
         $this->assertEquals($from, $model->timestamp_range->from()->toDateTimeString());
         $this->assertEquals($to, $model->timestamp_range->to()->toDateTimeString());
+    }
+
+    /** @test */
+    public function it_does_not_detect_changes_when_updating_with_same_timestamp_range(): void
+    {
+        $from = '2010-01-01 14:30:30';
+        $to = '2010-01-01 15:30:30';
+        $timestampRange = new TimestampRange($from, $to, '[', ']');
+        $model = $this->createModel(
+            [
+                'timestamp_range' => $timestampRange,
+            ]
+        );
+
+        $model = $model->fresh();
+        $model->update(
+            [
+                'timestamp_range' => $timestampRange,
+            ]
+        );
+
+        $this->assertEmpty($model->getChanges());
     }
 
     /** @test */
@@ -234,8 +257,8 @@ class RangesCastingTest extends TestCase
         parent::setUp();
         $this->withoutMockingConsoleOutput();
 
-        include_once __DIR__.'/../database/migrations/0000_00_00_000000_create_ranges_test_table.php';
-        include_once __DIR__.'/../database/migrations/0000_00_00_000001_create_ranges_additional_test_table.php';
+        include_once __DIR__ . '/../database/migrations/0000_00_00_000000_create_ranges_test_table.php';
+        include_once __DIR__ . '/../database/migrations/0000_00_00_000001_create_ranges_additional_test_table.php';
 
         // run the up() method of that migration class
         (new CreateRangesTestTable())->up();
