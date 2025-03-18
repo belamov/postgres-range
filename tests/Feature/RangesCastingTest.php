@@ -256,8 +256,8 @@ class RangesCastingTest extends TestCase
         parent::setUp();
         $this->withoutMockingConsoleOutput();
 
-        include_once __DIR__ . '/../database/migrations/0000_00_00_000000_create_ranges_test_table.php';
-        include_once __DIR__ . '/../database/migrations/0000_00_00_000001_create_ranges_additional_test_table.php';
+        include_once __DIR__.'/../database/migrations/0000_00_00_000000_create_ranges_test_table.php';
+        include_once __DIR__.'/../database/migrations/0000_00_00_000001_create_ranges_additional_test_table.php';
 
         // run the up() method of that migration class
         (new CreateRangesTestTable())->up();
