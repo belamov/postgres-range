@@ -35,4 +35,18 @@ class TimestampRange extends Range
     {
         return "'$this'::tsrange";
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf(
+            '%s%s,%s%s',
+            $this->fromBound,
+            $this->from ? "\"{$this->from}\"" : '',
+            $this->to ? "\"{$this->to}\"" : '',
+            $this->toBound
+        );
+    }
 }
