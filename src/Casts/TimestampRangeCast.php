@@ -21,9 +21,7 @@ class TimestampRangeCast extends RangeCast
      */
     protected function parseStringRange($value): array
     {
-        $matches = [];
-        preg_match('/([\[(])\"?([^",]*)\"?,\"?([^",]*)\"?([])])/', $value, $matches);
-
-        return $matches;
+        $withoutQuotes = str_replace('"', '', $value);
+        return parent::parseStringRange($withoutQuotes);
     }
 }
