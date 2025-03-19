@@ -57,6 +57,7 @@ class RangesCastingTest extends TestCase
         );
 
         $this->assertEmpty($model->getChanges());
+        $this->assertEquals((string) $model->getOriginal('timestamp_range'), (string) $model->timestamp_range);
     }
 
     /** @test */
