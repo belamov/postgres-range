@@ -22,6 +22,7 @@ class TimestampRangeCast extends RangeCast
     protected function parseStringRange($value): array
     {
         $withoutQuotes = str_replace('"', '', $value);
+
         return parent::parseStringRange($withoutQuotes);
     }
 }
