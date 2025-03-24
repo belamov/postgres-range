@@ -94,7 +94,7 @@ abstract class Range implements JsonSerializable
         return $this->toBound;
     }
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): string
     {
         return $this->__toString();
     }
