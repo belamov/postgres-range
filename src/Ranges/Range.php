@@ -2,7 +2,9 @@
 
 namespace Belamov\PostgresRange\Ranges;
 
-abstract class Range
+use JsonSerializable;
+
+abstract class Range implements JsonSerializable
 {
     protected string $fromBound;
     protected string $toBound;
@@ -90,5 +92,10 @@ abstract class Range
     public function toBound(): string
     {
         return $this->toBound;
+    }
+
+    public function jsonSerialize(): string
+    {
+        return $this->__toString();
     }
 }
