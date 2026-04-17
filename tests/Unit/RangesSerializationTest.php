@@ -11,7 +11,7 @@ use Belamov\PostgresRange\Ranges\TimestampRange;
 use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
 
-class RangesSerializationTest extends TestCase
+final class RangesSerializationTest extends TestCase
 {
     #[Test]
     public function timestamp_range_serializes_correctly(): void

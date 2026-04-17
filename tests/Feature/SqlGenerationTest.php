@@ -12,7 +12,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 
-class SqlGenerationTest extends TestCase
+final class SqlGenerationTest extends TestCase
 {
     use RefreshDatabase;
 

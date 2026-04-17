@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class TimeRangeConfigTest extends TestCase
+final class TimeRangeConfigTest extends TestCase
 {
     use RefreshDatabase;
 

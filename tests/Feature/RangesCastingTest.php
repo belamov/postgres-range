@@ -14,7 +14,7 @@ use CreateRangesAdditionalTestTable;
 use CreateRangesTestTable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class RangesCastingTest extends TestCase
+final class RangesCastingTest extends TestCase
 {
     use RefreshDatabase;
 

@@ -11,7 +11,7 @@ use Carbon\CarbonImmutable;
 use DateTime;
 use Exception;
 
-class RangesWithDatesInitializationTest extends TestCase
+final class RangesWithDatesInitializationTest extends TestCase
 {
     /**
      * @throws Exception

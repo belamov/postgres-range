@@ -16,7 +16,7 @@ use Carbon\Carbon;
 use CreateRangesTestTable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class MacrosTest extends TestCase
+final class MacrosTest extends TestCase
 {
     use RefreshDatabase;
 

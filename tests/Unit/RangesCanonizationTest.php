@@ -8,7 +8,7 @@ use Belamov\PostgresRange\Ranges\IntegerRange;
 use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
 
-class RangesCanonizationTest extends TestCase
+final class RangesCanonizationTest extends TestCase
 {
     #[Test]
     public function it_canonicalizes_integer_range(): void
