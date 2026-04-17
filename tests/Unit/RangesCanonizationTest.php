@@ -2,14 +2,15 @@
 
 namespace Belamov\PostgresRange\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Ranges\DateRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
 use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
 
-class RangesCanonizationTest extends TestCase
+final class RangesCanonizationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_canonicalizes_integer_range(): void
     {
         $range = new IntegerRange(10, 20, '(', ')');
@@ -55,7 +56,7 @@ class RangesCanonizationTest extends TestCase
         $this->assertEquals('[10,)', (string) $range);
     }
 
-    /** @test */
+    #[Test]
     public function it_canonicalizes_date_range(): void
     {
         $from = CarbonImmutable::parse('2010-01-10');

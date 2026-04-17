@@ -2,6 +2,7 @@
 
 namespace Belamov\PostgresRange\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Ranges\DateRange;
 use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
@@ -10,9 +11,9 @@ use Belamov\PostgresRange\Ranges\TimestampRange;
 use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
 
-class RangesSerializationTest extends TestCase
+final class RangesSerializationTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function timestamp_range_serializes_correctly(): void
     {
         $range = new TimestampRange('2010-01-01 14:30:30', '2010-01-01 15:30:30', '[', ']');
@@ -34,7 +35,7 @@ class RangesSerializationTest extends TestCase
         $this->assertEquals('[,]', (string) $range);
     }
 
-    /** @test */
+    #[Test]
     public function time_range_serializes_correctly(): void
     {
         $range = new TimeRange('14:30', '15:30', '[', ']');
@@ -56,7 +57,7 @@ class RangesSerializationTest extends TestCase
         $this->assertEquals('[,]', (string) $range);
     }
 
-    /** @test */
+    #[Test]
     public function numeric_range_serializes_correctly(): void
     {
         $range = new FloatRange(1.5, 2.5, '[', ']');
@@ -78,7 +79,7 @@ class RangesSerializationTest extends TestCase
         $this->assertEquals('[,]', (string) $range);
     }
 
-    /** @test */
+    #[Test]
     public function integer_range_serializes_correctly(): void
     {
         $range = new IntegerRange(10, 20, '[', ']');
@@ -103,7 +104,7 @@ class RangesSerializationTest extends TestCase
         $this->assertEquals('[,)', (string) $range);
     }
 
-    /** @test */
+    #[Test]
     public function date_range_serializes_correctly(): void
     {
         $from = CarbonImmutable::parse('2010-01-10');

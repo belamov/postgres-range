@@ -2,6 +2,7 @@
 
 namespace Belamov\PostgresRange\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Ranges\DateRange;
 use Belamov\PostgresRange\Ranges\TimeRange;
 use Belamov\PostgresRange\Ranges\TimestampRange;
@@ -10,13 +11,12 @@ use Carbon\CarbonImmutable;
 use DateTime;
 use Exception;
 
-class RangesWithDatesInitializationTest extends TestCase
+final class RangesWithDatesInitializationTest extends TestCase
 {
     /**
-     * @test
-     *
      * @throws Exception
      */
+    #[Test]
     public function date_range_can_be_initialized_with_strings_or_date_object(): void
     {
         $fromString = '2010-01-10';
@@ -43,10 +43,9 @@ class RangesWithDatesInitializationTest extends TestCase
     }
 
     /**
-     * @test
-     *
      * @throws Exception
      */
+    #[Test]
     public function timestamp_range_can_be_initialized_with_strings_or_date_object(): void
     {
         $fromString = '2010-01-10 14:30:30';
@@ -73,10 +72,9 @@ class RangesWithDatesInitializationTest extends TestCase
     }
 
     /**
-     * @test
-     *
      * @throws Exception
      */
+    #[Test]
     public function time_range_can_be_initialized_with_strings_or_date_object(): void
     {
         $fromString = '14:30:30';
