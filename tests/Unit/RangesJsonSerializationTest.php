@@ -10,6 +10,7 @@ use Belamov\PostgresRange\Ranges\TimeRange;
 use Belamov\PostgresRange\Ranges\TimestampRange;
 use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
+use PHPUnit\Framework\Attributes\Test;
 
 final class RangesJsonSerializationTest extends TestCase
 {

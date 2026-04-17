@@ -10,6 +10,7 @@ use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
 use DateTime;
 use Exception;
+use PHPUnit\Framework\Attributes\Test;
 
 final class RangesWithDatesInitializationTest extends TestCase
 {

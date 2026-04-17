@@ -11,6 +11,7 @@ use CreateRangesTestTable;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Attributes\Test;
 
 final class SqlGenerationTest extends TestCase
 {

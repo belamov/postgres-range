@@ -13,6 +13,7 @@ use Carbon\CarbonImmutable;
 use CreateRangesAdditionalTestTable;
 use CreateRangesTestTable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 
 final class RangesCastingTest extends TestCase
 {

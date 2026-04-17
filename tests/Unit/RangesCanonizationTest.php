@@ -7,6 +7,7 @@ use Belamov\PostgresRange\Ranges\DateRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
 use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
+use PHPUnit\Framework\Attributes\Test;
 
 final class RangesCanonizationTest extends TestCase
 {

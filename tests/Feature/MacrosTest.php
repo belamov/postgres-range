@@ -15,6 +15,7 @@ use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\Carbon;
 use CreateRangesTestTable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 
 final class MacrosTest extends TestCase
 {
