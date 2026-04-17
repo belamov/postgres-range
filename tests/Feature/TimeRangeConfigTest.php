@@ -2,12 +2,12 @@
 
 namespace Belamov\PostgresRange\Tests\Unit;
 
-use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Tests\TestCase;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Attributes\Test;
 
 final class TimeRangeConfigTest extends TestCase
 {

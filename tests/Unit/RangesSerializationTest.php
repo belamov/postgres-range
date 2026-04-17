@@ -2,7 +2,6 @@
 
 namespace Belamov\PostgresRange\Tests\Unit;
 
-use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Ranges\DateRange;
 use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
@@ -10,6 +9,7 @@ use Belamov\PostgresRange\Ranges\TimeRange;
 use Belamov\PostgresRange\Ranges\TimestampRange;
 use Belamov\PostgresRange\Tests\TestCase;
 use Carbon\CarbonImmutable;
+use PHPUnit\Framework\Attributes\Test;
 
 final class RangesSerializationTest extends TestCase
 {
