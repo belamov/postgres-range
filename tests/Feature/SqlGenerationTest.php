@@ -2,7 +2,6 @@
 
 namespace Belamov\PostgresRange\Tests\Unit;
 
-use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
 use Belamov\PostgresRange\Tests\TestCase;
