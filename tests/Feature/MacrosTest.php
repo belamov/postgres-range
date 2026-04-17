@@ -2,7 +2,6 @@
 
 namespace Belamov\PostgresRange\Tests\Feature;
 
-use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Macros\QueryBuilderMacros;
 use Belamov\PostgresRange\Models\Range;
 use Belamov\PostgresRange\Ranges\DateRange;

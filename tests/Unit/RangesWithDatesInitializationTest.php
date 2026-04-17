@@ -2,7 +2,6 @@
 
 namespace Belamov\PostgresRange\Tests\Unit;
 
-use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Ranges\DateRange;
 use Belamov\PostgresRange\Ranges\TimeRange;
 use Belamov\PostgresRange\Ranges\TimestampRange;

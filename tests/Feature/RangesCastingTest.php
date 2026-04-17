@@ -2,7 +2,6 @@
 
 namespace Belamov\PostgresRange\Tests\Feature;
 
-use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Ranges\DateRange;
 use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
