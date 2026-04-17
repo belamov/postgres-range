@@ -2,7 +2,6 @@
 
 namespace Belamov\PostgresRange\Tests\Feature;
 
-use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Ranges\DateRange;
 use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
@@ -13,6 +12,7 @@ use Carbon\CarbonImmutable;
 use CreateRangesAdditionalTestTable;
 use CreateRangesTestTable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\Test;
 
 final class RangesCastingTest extends TestCase
