@@ -2,6 +2,7 @@
 
 namespace Belamov\PostgresRange\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
 use Belamov\PostgresRange\Tests\TestCase;
@@ -10,12 +11,13 @@ use CreateRangesTestTable;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Attributes\Test;
 
-class SqlGenerationTest extends TestCase
+final class SqlGenerationTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function it_creates_nullable_columns(): void
     {
         $model = $this->createModel([]);
@@ -31,7 +33,7 @@ class SqlGenerationTest extends TestCase
         $this->assertNull($model->date_range_nullable);
     }
 
-    /** @test */
+    #[Test]
     public function it_creates_columns_with_default_values(): void
     {
         $model = $this->createModel([]);
@@ -53,7 +55,7 @@ class SqlGenerationTest extends TestCase
         $this->assertEquals('[2010-01-01,2010-01-02)', $model->getRawOriginal('date_range_with_default'));
     }
 
-    /** @test */
+    #[Test]
     public function it_creates_indexes(): void
     {
         $indexes = DB::select(
@@ -79,7 +81,7 @@ class SqlGenerationTest extends TestCase
         );
     }
 
-    /** @test */
+    #[Test]
     public function it_generates_unique_constraints(): void
     {
         $this->expectException(QueryException::class);
@@ -91,7 +93,7 @@ class SqlGenerationTest extends TestCase
         $this->createModel(['bigint_range_nullable' => $integerRange]);
     }
 
-    /** @test */
+    #[Test]
     public function it_generates_unique_constraints_with_additional_column(): void
     {
         $this->expectException(QueryException::class);
@@ -103,7 +105,7 @@ class SqlGenerationTest extends TestCase
         $this->createModel(['integer_range_nullable' => $integerRange, 'column1' => 1]);
     }
 
-    /** @test */
+    #[Test]
     public function it_generates_unique_constraints_with_additional_columns(): void
     {
         $this->expectException(QueryException::class);

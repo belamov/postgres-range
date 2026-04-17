@@ -2,17 +2,19 @@
 
 namespace Belamov\PostgresRange\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Tests\TestCase;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Attributes\Test;
 
-class TimeRangeConfigTest extends TestCase
+final class TimeRangeConfigTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function it_takes_timerange_type_name_from_config(): void
     {
         $timeRangeTypeName = 'testing_timerange_type_name';
