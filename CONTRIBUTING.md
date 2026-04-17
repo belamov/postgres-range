@@ -46,7 +46,7 @@ Before submitting a pull request:
 - Check the codebase to ensure that your feature doesn't already exist.
 - Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
 
-## Requirements 
+## Requirements
 
 If the project maintainer has any additional requirements, you will find them listed here.
 
