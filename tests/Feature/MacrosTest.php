@@ -2,6 +2,7 @@
 
 namespace Belamov\PostgresRange\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Macros\QueryBuilderMacros;
 use Belamov\PostgresRange\Models\Range;
 use Belamov\PostgresRange\Ranges\DateRange;
@@ -22,7 +23,7 @@ class MacrosTest extends TestCase
     private IntegerRange $range;
     private string $columnName = 'integer_range';
 
-    /** @test */
+    #[Test]
     public function macros_test(): void
     {
         $macros = new QueryBuilderMacros();
@@ -40,7 +41,7 @@ class MacrosTest extends TestCase
         }
     }
 
-    /** @test */
+    #[Test]
     public function query_builder_macros_do_not_throw_any_exceptions(): void
     {
         $macros = new QueryBuilderMacros();

@@ -2,6 +2,7 @@
 
 namespace Belamov\PostgresRange\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
 use Belamov\PostgresRange\Ranges\DateRange;
 use Belamov\PostgresRange\Ranges\FloatRange;
 use Belamov\PostgresRange\Ranges\IntegerRange;
@@ -17,7 +18,7 @@ class RangesCastingTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function it_casts_timestamp_range_column(): void
     {
         $from = '2010-01-01 14:30:30';
@@ -37,7 +38,7 @@ class RangesCastingTest extends TestCase
         $this->assertEquals($to, $model->timestamp_range->to()->toDateTimeString());
     }
 
-    /** @test */
+    #[Test]
     public function it_does_not_detect_changes_when_updating_with_same_timestamp_range(): void
     {
         $from = '2010-01-01 14:30:30';
@@ -60,7 +61,7 @@ class RangesCastingTest extends TestCase
         $this->assertEquals((string) $model->getOriginal('timestamp_range'), (string) $model->timestamp_range);
     }
 
-    /** @test */
+    #[Test]
     public function it_casts_timestamptz_range_column(): void
     {
         $from = '2010-01-01 14:30:30-2:00';
@@ -80,7 +81,7 @@ class RangesCastingTest extends TestCase
         $this->assertEquals(CarbonImmutable::parse($to)->timezone('UTC')->toDateTimeString(), $model->timestamptz_range->to()->toDateTimeString());
     }
 
-    /** @test */
+    #[Test]
     public function it_casts_time_range_column(): void
     {
         $from = '14:30:30';
@@ -100,7 +101,7 @@ class RangesCastingTest extends TestCase
         $this->assertEquals($to, $model->time_range->to());
     }
 
-    /** @test */
+    #[Test]
     public function it_casts_date_range_column(): void
     {
         $from = CarbonImmutable::parse('2010-01-10');
@@ -122,7 +123,7 @@ class RangesCastingTest extends TestCase
         $this->assertEquals($to, $model->date_range->to());
     }
 
-    /** @test */
+    #[Test]
     public function it_casts_float_range_column(): void
     {
         $from = 1.5;
@@ -144,7 +145,7 @@ class RangesCastingTest extends TestCase
         $this->assertEquals($to, $model->float_range->to());
     }
 
-    /** @test */
+    #[Test]
     public function it_casts_integer_and_bigint_range_column(): void
     {
         $from = 10;
@@ -174,7 +175,7 @@ class RangesCastingTest extends TestCase
         $this->assertEquals($to, $model->bigint_range->to());
     }
 
-    /** @test */
+    #[Test]
     public function it_casts_empty_values_to_null(): void
     {
         $model = $this->createModel(
@@ -198,7 +199,7 @@ class RangesCastingTest extends TestCase
         $this->assertNull($model->date_range);
     }
 
-    /** @test */
+    #[Test]
     public function it_casts_empty_boundaries_to_null(): void
     {
         $rangeFields = [
